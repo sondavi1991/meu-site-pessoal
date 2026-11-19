@@ -274,7 +274,7 @@ export const CAREER = [
   },
   {
     from: '2017',
-    to: '2025',
+    to: 'hoje',
     hash: '3c88e17',
     where: 'Freelancer',
     role: 'Desenvolvedor full stack',

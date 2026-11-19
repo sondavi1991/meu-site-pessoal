@@ -76,6 +76,8 @@ main:focus { outline: none; }
    ================================================================== */
 
 .btn { white-space: nowrap; display: inline-flex; align-items: center; gap: 14px; min-height: 48px; padding: 5px 5px 5px 20px; border-radius: 12px; font-size: 15px; font-weight: 500; text-decoration: none; transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), background 0.2s, border-color 0.2s; }
+/* sem ícone, o respiro da direita fica igual ao da esquerda */
+.btn:not(.btn-sm):not(:has(.ic)) { padding-right: 20px; }
 .btn .ic { width: 36px; height: 36px; border-radius: 9px; display: grid; place-items: center; transition: transform 0.35s var(--ease); }
 .btn:hover .ic { transform: translateX(4px); }
 .dm .btn-lime, .dm .btn-lime:hover { background: var(--lime); color: var(--on-lime); }
@@ -415,6 +417,30 @@ details.acc summary:hover .ttl { color: var(--lime); }
 .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 72px; padding: 22px 0; border-top: 1px solid var(--line); }
 .clock { color: var(--ink); }
 .giant { font-family: var(--f-display); font-weight: 700; letter-spacing: -0.06em; font-size: clamp(64px, 13vw, 200px); line-height: 0.78; margin: 16px 0 0; white-space: nowrap; text-align: center; color: var(--lime); }
+
+/* ==================================================================
+   Página 404 (terminal com o git checkout que falhou)
+   ================================================================== */
+
+.nf {
+  min-height: 100svh;
+  display: flex;
+  background-image:
+    radial-gradient(50% 45% at 80% 28%, rgba(198, 255, 61, 0.07), transparent 70%),
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: auto, 48px 48px, 48px 48px;
+}
+.nf-in { flex: 1; display: flex; flex-direction: column; gap: 48px; width: 100%; padding-top: 16px; padding-bottom: 28px; }
+.nf-body { margin: auto 0; max-width: 780px; }
+.nf-code { font-size: clamp(112px, 20vw, 280px); line-height: 0.8; letter-spacing: -0.06em; color: var(--lime); }
+.nf-title { font-size: clamp(32px, 4.4vw, 60px); line-height: 1.02; margin-top: 28px; }
+.nf-term { margin-top: 36px; border: 1px solid var(--line-strong); border-radius: 14px; background: #121418; overflow: hidden; box-shadow: 0 30px 60px -28px rgba(0, 0, 0, 0.9); }
+.nf-term-head { display: flex; align-items: center; gap: 14px; height: 38px; padding: 0 14px; background: #1b1e23; border-bottom: 1px solid var(--line); font-family: var(--f-mono); font-size: 12px; color: var(--mute); }
+.nf-term-body { margin: 0; padding: 18px 20px; font-family: var(--f-mono); font-size: 14px; line-height: 1.8; color: var(--ink); white-space: pre-wrap; overflow-wrap: anywhere; }
+.nf-err { color: var(--mute); }
+.nf .actions { margin-top: 36px; }
+.nf-foot { margin: 0; }
 
 /* ==================================================================
    Responsivo e movimento reduzido

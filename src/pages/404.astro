@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import { SITE } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<Layout
+  title={`Página não encontrada — ${SITE.name}`}
+  description="Essa página não existe. Volte para o início do site do Davi Manoel."
+  noindex
+>
+  <main id="conteudo" tabindex="-1" class="nf">
+    <div class="wrap nf-in">
+      <a class="brand" href="/">{SITE.name}<span class="cursor" aria-hidden="true"></span></a>
+
+      <div class="nf-body">
+        <p class="disp nf-code" aria-hidden="true">404</p>
+        <h1 class="disp nf-title">Esse commit <span class="lime">não existe.</span></h1>
+        <p class="lead">O link pode estar quebrado ou a página mudou de lugar. Acontece até nos melhores repositórios.</p>
+
+        <div class="nf-term">
+          <div class="nf-term-head" aria-hidden="true">
+            <span class="browser-dots"><i></i><i></i><i></i></span>
+            <span>bash</span>
+          </div>
+          <pre class="nf-term-body"><span class="lime">~/davi-manoel</span> $ git checkout <span data-path>esta-pagina</span>
+<span class="nf-err">error: pathspec '<span data-path>esta-pagina</span>' did not match any file(s) known to git</span>
+<span class="lime">~/davi-manoel</span> $ git checkout main<span class="cursor" aria-hidden="true"></span></pre>
+        </div>
+
+        <div class="actions">
+          <Button href="/" icon="arrow">Voltar para o início</Button>
+          <Button href="/#projetos" variant="ghost">Ver projetos</Button>
+        </div>
+      </div>
+
+      <p class="meta nf-foot">© {year} {SITE.name}</p>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // Mostra no terminal o endereço que a pessoa tentou abrir (cortado se for muito longo).
+  let path = location.pathname;
+  try {
+    path = decodeURIComponent(path);
+  } catch {
+    // endereço com codificação inválida: mostra como veio
+  }
+  if (path.length > 48) path = `${path.slice(0, 45)}...`;
+  for (const el of document.querySelectorAll<HTMLElement>('[data-path]')) el.textContent = path;
+</script>

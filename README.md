@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src=".github/assets/desktop-hero.webp" alt="Página inicial do site: à esquerda o título “Olá, eu sou o Davi. Engenheiro de software full stack.”; à direita a foto do Davi com trechos de código revelados sob o cursor." width="100%">
+<img src=".github/assets/desktop-hero.webp" alt="Página inicial do site: à esquerda o título “Olá, mundo. Eu sou o Davi, engenheiro de software full stack.”; à direita a foto do Davi e um cartão de commit com “build ok · deploy no ar”." width="100%">
 
 # Davi Manoel · site pessoal
 
@@ -9,8 +9,8 @@ feito para carregar rápido até no 4G.
 
 [![Astro 7](https://img.shields.io/badge/Astro-7-0b0c0e?style=flat-square&logo=astro&logoColor=c6ff3d)](https://astro.build)
 [![TypeScript strict](https://img.shields.io/badge/TypeScript-strict-0b0c0e?style=flat-square&logo=typescript&logoColor=c6ff3d)](tsconfig.json)
-[![JS no navegador](https://img.shields.io/badge/JS_no_navegador-2%2C3_kB-c6ff3d?style=flat-square&labelColor=0b0c0e)](#em-números)
-[![Primeira carga](https://img.shields.io/badge/primeira_carga-252_kB-c6ff3d?style=flat-square&labelColor=0b0c0e)](#em-números)
+[![JS no navegador](https://img.shields.io/badge/JS_no_navegador-2%2C9_kB-c6ff3d?style=flat-square&labelColor=0b0c0e)](#em-números)
+[![Primeira carga](https://img.shields.io/badge/primeira_carga-278_kB-c6ff3d?style=flat-square&labelColor=0b0c0e)](#em-números)
 [![Node](https://img.shields.io/badge/node-%E2%89%A522.23-0b0c0e?style=flat-square&logo=nodedotjs&logoColor=c6ff3d)](.nvmrc)
 
 [LinkedIn](https://www.linkedin.com/in/davi-manoel/) · [Site Sob Medida](https://www.sitesobmedida.com.br/) · [GitHub](https://github.com/sondavi1991)
@@ -25,20 +25,20 @@ Medido no build de produção, primeira visita em desktop, sem cache:
 
 | Métrica | Valor |
 | --- | --- |
-| Requisições | **8** |
-| Peso transferido | **~252 kB** (comprimido) |
-| JavaScript | **2,3 kB**, embutido no HTML, sem framework |
+| Requisições | **9** |
+| Peso transferido | **~278 kB** (comprimido) |
+| JavaScript | **2,9 kB**, embutido no HTML, sem framework |
 | Fontes | 3 arquivos variáveis WOFF2, servidos pelo próprio site |
-| Imagens | WebP responsivo, só o hero carrega de imediato |
+| Imagens | WebP responsivo; a foto do hero carrega de imediato e os prints dos projetos, sob demanda |
 
 ```mermaid
 %%{init: {'theme':'base','themeVariables':{'pie1':'#c6ff3d','pie2':'#7a9a26','pie3':'#3d4a14','pie4':'#a3a8b0','pieStrokeColor':'#0b0c0e','pieOuterStrokeColor':'#0b0c0e','pieTitleTextSize':'16px','pieSectionTextColor':'#0b0c0e','pieLegendTextColor':'#a3a8b0'}}}%%
 pie showData
     title Primeira carga por tipo (kB comprimidos)
     "Fontes" : 155.1
-    "Imagens" : 79.2
-    "HTML + JS embutido" : 11.7
-    "CSS" : 5.7
+    "Imagens" : 100.6
+    "HTML + JS embutido" : 14.7
+    "CSS" : 7.1
 ```
 
 ## Telas
@@ -50,7 +50,11 @@ pie showData
 </p>
 
 <p align="center">
-  <img src=".github/assets/desktop-stack.webp" alt="Seção Stack: um teclado com as tecnologias agrupadas e, ao lado, um painel que explica a tecla selecionada (Laravel)." width="100%">
+  <img src=".github/assets/desktop-projetos.webp" alt="Seção Projetos: card da Única Instrumentação com segmento, ano, descrição e tecnologias; à direita, o print do site dentro de uma janela de navegador sobre um fundo quadriculado." width="100%">
+</p>
+
+<p align="center">
+  <img src=".github/assets/desktop-stack.webp" alt="Seção Stack: um teclado com as tecnologias agrupadas em seis linhas, de Linguagens a Dados e IA, e ao lado um painel que explica a tecla selecionada (Laravel)." width="100%">
 </p>
 
 ## Destaques
@@ -65,6 +69,9 @@ pie showData
   anéis, o texto do Sobre acende palavra por palavra, a carreira é digitada como um `git log` e o
   nome do rodapé sobe letra a letra. Tudo com `animation-timeline` e versão estática onde o
   navegador não suporta.
+- **Projetos em janela de navegador.** Cada print entra numa janela desenhada em CSS, com a
+  barra de endereço mostrando o domínio do cliente. Projeto que ainda não está no ar aparece sem o
+  botão de abrir e com “em breve no ar” na barra.
 - **Menu lateral no celular** com `<dialog>` nativo: prende o foco, fecha com Esc ou tocando fora
   e devolve o foco ao botão. O menu destaca a seção que está na tela.
 - **Teclado de stack interativo.** Funciona com mouse, toque e Tab. No celular, o painel de
@@ -72,6 +79,8 @@ pie showData
 - **Fontes sem depender do Google.** Bricolage Grotesque, Schibsted Grotesk e JetBrains Mono são baixadas no
   build (com o eixo de tamanho óptico da Bricolage) e servidas pelo próprio site, com `preload` e
   fonte reserva calibrada para a página não “pular” enquanto carrega.
+- **404 com cara de terminal.** Um link quebrado mostra o `git checkout` que falhou, com o
+  endereço que a pessoa tentou abrir, e botões de volta para o início.
 - **Conteúdo separado do layout.** Textos, projetos, stack, carreira e FAQ moram num único arquivo
   de dados.
 
@@ -141,6 +150,7 @@ npm run dev        # http://localhost:4321
 │   ├── data/site.ts          # todo o conteúdo do site
 │   ├── layouts/Layout.astro  # <head>, metatags e fontes
 │   ├── pages/index.astro     # monta as seções
+│   ├── pages/404.astro       # página de “commit não encontrado”
 │   └── styles/global.css     # tokens e estilos, por seção
 └── astro.config.mjs          # domínio e fontes
 ```
@@ -151,8 +161,9 @@ Quase tudo que aparece na página está em [`src/data/site.ts`](src/data/site.ts
 
 - `SITE`: nome, status, links e o endereço do currículo (`cvUrl`).
 - `PROJECTS`: os cards de projetos. Para trocar um print, coloque a imagem em
-  `src/assets/projetos/` e importe no topo do arquivo.
-- `LIVE_SITES`, `STACK`, `SERVICES`, `CAREER`, `REVIEWS` e `FAQ`: as demais seções.
+  `src/assets/projetos/` e importe no topo do arquivo. Sem `url`, o card fica sem o botão
+  “Abrir site” (projeto que ainda não está no ar).
+- `LIVE_SITES`, `STACK`, `SERVICES`, `CAREER`, `HOUSE_RULES` e `FAQ`: as demais seções.
 
 Cores e espaçamentos ficam nas custom properties do bloco `.dm` em
 [`src/styles/global.css`](src/styles/global.css). Para trocar uma fonte, mude o `name` dela em
