@@ -10,7 +10,7 @@ export const SITE = {
   title: 'Davi Manoel — Engenheiro de Software',
   description:
     'Engenheiro de software full stack com mais de 10 anos criando sites, landing pages e sistemas sob medida com Laravel, Node.js e WordPress.',
-  status: 'Aberto a vagas remotas, PJ ou CLT',
+  status: 'Online · aberto a projetos, parcerias e boas conversas',
   city: 'Ribeirão Preto, SP',
   cvUrl: '#', // TODO: apontar para o PDF do currículo (ex.: /curriculo-davi-manoel.pdf em public/)
   linkedin: 'https://www.linkedin.com/in/davi-manoel/',
@@ -109,12 +109,12 @@ export const PROJECTS: Project[] = [
 /* ------------------------------------------------------------------ */
 
 export const ABOUT_TEXT =
-  'Construo sites e sistemas que carregam rápido e continuam rápidos. Mais de dez anos entre WordPress, Laravel e Node.js me ensinaram que velocidade é recurso, segurança não é opcional e o melhor código é aquele que o próximo desenvolvedor consegue ler.';
+  'Construo sites e sistemas que carregam rápido e continuam rápidos. Em mais de dez anos de WordPress, Laravel e Node.js, aprendi três coisas: velocidade é funcionalidade, segurança não é opcional e o melhor código é o que o próximo dev lê sem xingar o autor. Hoje esse próximo dev às vezes é uma IA, e a regra continua a mesma.';
 
 export const NOW = [
   { label: 'Construindo', value: 'Site Sob Medida, minha empresa' },
   { label: 'Estudando', value: 'Pós em Engenharia de Software' },
-  { label: 'Procurando', value: 'Vaga remota full stack ou Laravel, PJ ou CLT' },
+  { label: 'Aberto a', value: 'Projetos, parcerias e vagas remotas' },
   { label: 'Lendo', value: '[Livro que você está lendo]' },
 ];
 
@@ -126,7 +126,7 @@ export const NOW = [
 export const RINGS = [
   { label: 'Experiência', value: '10+', sub: 'anos', progress: 1 },
   { label: 'Portfólio', value: '30+', sub: 'sites no ar', progress: 1 },
-  { label: 'Mobile-first', value: '100%', sub: 'responsivo', progress: 1 },
+  { label: 'Café', value: '∞', sub: 'xícaras', progress: 1 },
   { label: 'Performance', value: '[XX]', sub: 'Lighthouse médio', progress: 0.9 },
 ];
 
@@ -158,7 +158,7 @@ export const STACK: { name: string; keys: StackKey[] }[] = [
       { name: 'PHP', tag: 'back-end', note: 'Base de quase tudo que eu entrego no servidor, de APIs a integrações.' },
       { name: 'JavaScript', tag: 'front-end', note: 'Interações, rastreamento e tudo que roda no navegador.' },
       { name: 'TypeScript', tag: 'front-end', note: 'Tipagem para projetos maiores e times que precisam de segurança no código.' },
-      { name: 'Ruby', tag: 'back-end', note: 'Projetos e manutenções em Ruby quando o cliente já tem essa base.' },
+      { name: 'Ruby', tag: 'back-end', note: 'Manutenção e evolução de projetos que já nasceram em Ruby.' },
     ],
   },
   {
@@ -166,9 +166,9 @@ export const STACK: { name: string; keys: StackKey[] }[] = [
     keys: [
       { name: 'Laravel', tag: 'sob medida', note: 'Minha escolha para sistemas, painéis e plataformas sob medida: rápido de construir e fácil de manter.' },
       { name: 'Node.js', tag: 'APIs', note: 'APIs, automações e integrações em tempo real.' },
-      { name: 'Astro', tag: 'sites', note: 'Sites estáticos muito rápidos, ótimos para landing pages e conteúdo.' },
+      { name: 'Astro', tag: 'sites', note: 'Sites estáticos muito rápidos. Este aqui, por exemplo.' },
       { name: 'React', tag: 'front-end', note: 'Interfaces e componentes interativos no front-end.' },
-      { name: 'React Native', tag: 'mobile', note: 'Apps híbridos para Android e iOS com uma base de código só.' },
+      { name: 'React Native', tag: 'mobile', note: 'Apps para Android e iOS com uma base de código só.' },
     ],
   },
   {
@@ -189,6 +189,12 @@ export const STACK: { name: string; keys: StackKey[] }[] = [
       { name: 'Google Ads', tag: 'anúncios', note: 'Páginas aprovadas e prontas para campanhas de pesquisa.' },
     ],
   },
+  {
+    name: 'IA',
+    keys: [
+      { name: 'Claude Code', tag: 'pair programming', note: 'Par de programação que não cansa. Eu decido a arquitetura, reviso cada linha e assino o commit.' },
+    ],
+  },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -198,27 +204,27 @@ export const STACK: { name: string; keys: StackKey[] }[] = [
 export const SERVICES = [
   {
     title: 'Landing pages de conversão',
-    text: 'Páginas pensadas para tráfego pago: carregam rápido, ficam perfeitas no celular e chegam com rastreamento completo, prontas para a campanha rodar.',
+    text: 'Páginas feitas para aguentar tráfego pago: carregam rápido, ficam redondas no celular e já saem com o rastreamento testado. A campanha liga e os dados chegam.',
     items: ['CTA forte e texto orientado a conversão', 'Pixel, GA4, GTM e UTMs testados', 'Formulário e WhatsApp integrados'],
   },
   {
     title: 'Sites institucionais',
-    text: 'Sites que passam credibilidade e são fáceis de editar depois. Também refaço sites lentos, quebrados ou desalinhados mantendo a identidade visual.',
+    text: 'Sites que passam confiança e que o cliente edita sem precisar me ligar. Também resgato site lento, quebrado ou feito às pressas, mantendo a identidade visual.',
     items: ['SEO técnico desde a base', 'Painel simples para editar conteúdo', 'Refatoração de sites existentes'],
   },
   {
     title: 'Sistemas sob medida',
-    text: 'Plataformas, painéis e integrações com stack moderna em Laravel, Node.js e Astro. Apps mobile híbridos com React Native.',
+    text: 'Quando o problema não cabe num plugin. Com IA escrevendo código cada vez mais rápido, o que faz diferença é decidir o que construir e como as peças se encaixam. Por isso começo pelo negócio e pela arquitetura, e a stack vem depois, escolhida pela necessidade e não pela moda. Plataformas, painéis, integrações e apps.',
     items: ['Arquitetura documentada antes do código', 'Entregas semanais, sem surpresa no fim', 'Documentação e passagem de bastão'],
   },
   {
     title: 'Manutenção, segurança e performance',
-    text: 'Recupero sites infectados por malware, reprovados no Google Ads ou com alerta de antivírus, e mantenho tudo atualizado e com backup.',
+    text: 'Site infectado, reprovado no Google Ads ou com a tela vermelha do antivírus? Eu limpo, blindo e deixo tudo atualizado e com backup.',
     items: ['Limpeza e blindagem do site', 'Otimização de velocidade', 'Parceria recorrente com gestores de tráfego'],
   },
   {
     title: 'Gestão de projetos e consultoria',
-    text: 'Ajudo empresas e times a tirar projetos digitais do papel: defino escopo, prioridades e prazos, escolho a tecnologia certa e acompanho a entrega até o ar, falando a língua do negócio e a do time técnico.',
+    text: 'Também conheço o outro lado do balcão: defino escopo, prazos e prioridades, escolho a tecnologia e acompanho o time até o deploy. Traduzo “o cliente quer” para “o dev entende”, e vice-versa.',
     items: ['Diagnóstico de sites e sistemas existentes', 'Escopo, cronograma e escolha da stack', 'Acompanhamento de equipes e fornecedores'],
   },
 ];
@@ -234,7 +240,7 @@ export const CAREER = [
     hash: 'a1f3c9e',
     where: 'Site Sob Medida · Fundador',
     role: 'Engenheiro de Software full stack',
-    text: 'Sites, landing pages e sistemas sob medida; parceiro técnico recorrente de gestores de tráfego.',
+    text: 'Fundei minha empresa para trabalhar do jeito que acredito: sites, landing pages e sistemas sob medida, e parceria técnica fixa com gestores de tráfego.',
     current: true,
   },
   {
@@ -242,8 +248,8 @@ export const CAREER = [
     to: '[ANO]',
     hash: '7d20b4a',
     where: 'Inteligência Relacional · Escola da Inteligência',
-    role: 'Desenvolvedor e implementação Moodle',
-    text: 'Anos de implementação e evolução de plataformas EAD em Moodle.',
+    role: 'Desenvolvedor PHP e Moodle',
+    text: 'Anos colocando plataformas EAD de pé e fazendo elas crescerem sem cair.',
   },
   {
     from: '[ANO]',
@@ -277,24 +283,28 @@ export const REVIEWS = [
 
 export const FAQ = [
   {
-    q: 'Está aberto a vagas fixas?',
-    a: 'Sim. Busco vaga remota como full stack, front-end ou PHP com Laravel, de preferência PJ, também aberto a CLT. Em paralelo, sigo atendendo projetos freelas.',
-  },
-  {
-    q: 'Você trabalha com WordPress?',
-    a: 'Sim, há mais de 10 anos. Para projetos sob medida recomendo stack própria em Laravel ou Node.js, mais rápida e segura; WordPress quando faz mais sentido para o cliente.',
+    q: 'Dá para te contratar?',
+    a: 'Dá: para projetos, para parceria com agências e gestores de tráfego e para vagas remotas, PJ ou CLT. Me chama no LinkedIn.',
   },
   {
     q: 'Atende gestores de tráfego e agências?',
     a: 'Sim, como parceiro técnico recorrente: você cuida da campanha, eu cuido das páginas, do rastreamento e da velocidade.',
   },
   {
-    q: 'Consegue recuperar um site invadido?',
-    a: 'Sim. Já recuperei sites infectados por malware, reprovados no Google Ads e com alerta de antivírus, e entrego com backup e boas práticas.',
+    q: 'WordPress ainda presta?',
+    a: 'Presta, e faz mais de 10 anos que trabalho com ele. Para quem quer editar tudo sozinho, costuma ser a escolha certa. Quando o projeto pede mais controle e desempenho, vou de Laravel ou Node.js.',
   },
   {
-    q: 'Quanto custa e qual o prazo de um freela?',
-    a: 'Depende do escopo. Me chame no LinkedIn com um resumo e eu respondo com proposta, valor e prazo fechados.',
+    q: 'Meu site foi invadido. E agora?',
+    a: 'Respira. Já recuperei sites com malware, reprovados no Google Ads e com alerta de antivírus. Eu limpo, fecho as portas e devolvo com backup em dia.',
+  },
+  {
+    q: 'Quanto custa?',
+    a: 'Depende do escopo (resposta clássica de dev, eu sei). Me manda um resumo no LinkedIn que eu volto com proposta, valor e prazo fechados.',
+  },
+  {
+    q: 'Tabs ou espaços?',
+    a: 'O que o .editorconfig do projeto mandar. Padrão do time vem antes de gosto pessoal.',
   },
 ];
 

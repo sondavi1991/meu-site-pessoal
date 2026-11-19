@@ -4,7 +4,7 @@ import { SITE } from '../data/site';
 const year = new Date().getFullYear();
 const cols = [
   { title: 'Site', links: [{ label: 'Projetos', href: '#projetos' }, { label: 'Serviços', href: '#servicos' }, { label: 'Contato', href: '#contato' }] },
-  { title: 'Sobre', links: [{ label: 'Sobre', href: '#sobre' }, { label: 'Stack', href: '#stack' }, { label: 'Currículo', href: SITE.cvUrl }] },
+  { title: 'Perfil', links: [{ label: 'Sobre', href: '#sobre' }, { label: 'Stack', href: '#stack' }, { label: 'Currículo', href: SITE.cvUrl }] },
   {
     title: 'Redes',
     links: [
@@ -33,6 +33,7 @@ const cols = [
     </div>
     <div class="meta footer-bottom">
       <span>{SITE.city} · <span class="mono clock" data-clock>--:--</span></span>
+      <span>Melhor visualizado em qualquer tela. Sem Flash, sem jQuery, sem frescura.</span>
       <span>© {year} {SITE.name}</span>
     </div>
     <p class="giant" aria-hidden="true">

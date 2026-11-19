@@ -243,7 +243,8 @@ html:has(.drawer[open]) { overflow: hidden; }
 @supports not (animation-timeline: view()) { .rv span { color: var(--ink); } }
 @keyframes lit { to { color: var(--ink); } }
 
-.now { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0 32px; margin-top: 88px; border-top: 1px solid var(--line); }
+.now-file { margin-top: 88px; }
+.now { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0 32px; margin-top: 14px; border-top: 1px solid var(--line); }
 .now > div { padding: 26px 0; }
 .now-v { margin-top: 10px; font-size: 18px; }
 
@@ -399,7 +400,9 @@ details.acc summary:hover .ttl { color: var(--lime); }
    Responsivo e movimento reduzido
    ================================================================== */
 
-@media (max-width: 1200px) {
+/* o status completo só cabe na barra a partir de ~1240px */
+.nav-cta .status { white-space: nowrap; }
+@media (max-width: 1240px) {
   .nav-cta .status { display: none; }
 }
 

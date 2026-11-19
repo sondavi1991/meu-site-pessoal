@@ -19,7 +19,7 @@ for (const p of parts) {
 
 // Título quebrado em palavras para a entrada (cada palavra sobe por trás de uma máscara).
 const titleWords = [
-  ...'Olá, eu sou o Davi. Engenheiro de software'.split(' ').map((t) => ({ t, lime: false })),
+  ...'Olá, mundo. Eu sou o Davi, engenheiro de software'.split(' ').map((t) => ({ t, lime: false })),
   ...'full stack.'.split(' ').map((t) => ({ t, lime: true })),
 ];
 
@@ -37,10 +37,10 @@ const commitMsg = 'feat(lp): GA4 + GTM + pixel Meta';
         ))}
       </h1>
       <p class="lead hero-lead">
-        Há mais de 10 anos crio sites, landing pages e sistemas sob medida, hoje principalmente com
-        Laravel, Node.js e WordPress. Gosto de código limpo, páginas rápidas e de entender o problema
-        antes de escrever a primeira linha. Também atuo como gerente de projetos e estou aberto a
-        vagas remotas.
+        Faz mais de 10 anos que transformo café e problemas em sites, landing pages e sistemas. Passei
+        por WordPress, Moodle, Laravel e Node.js e aprendi que site bom é o que carrega rápido, não cai
+        e ninguém tem medo de mexer depois. Hoje toco a Site Sob Medida e cuido dos projetos do rascunho
+        ao deploy.
       </p>
       <div class="actions">
         <Button href={SITE.cvUrl} icon="download">Baixar CV</Button>
@@ -69,7 +69,7 @@ const commitMsg = 'feat(lp): GA4 + GTM + pixel Meta';
           <div class="commit-msg" style={`--n: ${commitMsg.length}`}>
             <span class="typed">{commitMsg}</span><span class="caret" aria-hidden="true"></span>
           </div>
-          <div class="commit-ok">eventos testados, no ar</div>
+          <div class="commit-ok">✓ build ok · deploy no ar</div>
         </div>
       </div>
     </div>
