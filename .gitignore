@@ -80,3 +80,10 @@ docs/ai/
 tmp/
 .tmp/
 *.local.*
+
+# Ferramentas de design por IA (impeccable) e gerenciadores de skills
+.impeccable/
+.agents/
+skills-lock.json
+PRODUCT.md
+DESIGN.md
