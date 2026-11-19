@@ -384,7 +384,7 @@ details.acc summary:hover .ttl { color: var(--lime); }
 .rvw:hover { background: rgba(198, 255, 61, 0.04); }
 .rvw .ln { font-size: 12px; color: var(--mute); line-height: 2; }
 .rvw-name { font-weight: 600; }
-.rvw-role { margin-top: 6px; }
+.rvw-role { margin-bottom: 6px; }
 .rvw .q { font-family: var(--f-display); font-weight: 500; font-size: 20px; line-height: 1.4; letter-spacing: -0.015em; margin: 0; }
 
 /* ==================================================================

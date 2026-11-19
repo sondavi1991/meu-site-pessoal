@@ -1,25 +1,25 @@
 ---
 import Icon from './Icon.astro';
-import { REVIEWS } from '../data/site';
+import { HOUSE_RULES } from '../data/site';
 ---
 
 <section class="sec sec-tight">
   <div class="wrap">
     <h2 class="disp h2">Revisado e <span class="lime">aprovado.</span></h2>
-    <p class="lead">Quem contratou, nas próprias palavras.</p>
+    <p class="lead">Antes de chegar no cliente, todo projeto passa pelo meu code review. Estas são as regras que nunca ficam de fora.</p>
     <div class="cr">
       <div class="cr-head">
-        <span class="mono cr-file"><span class="cr-tab">reviews/clientes.md</span></span>
+        <span class="mono cr-file"><span class="cr-tab">reviews/regras-da-casa.md</span></span>
         <span class="cr-ok mono"><Icon name="check" size={14} strokeWidth={2} />Approved</span>
       </div>
-      {REVIEWS.map((r, i) => (
+      {HOUSE_RULES.map((r, i) => (
         <div class="rvw">
           <div class="mono ln">{i * 3 + 1}<br />{i * 3 + 2}<br />{i * 3 + 3}</div>
           <div>
-            <div class="rvw-name">{r.name}</div>
-            <div class="meta rvw-role">{r.role} · {r.company}</div>
+            <div class="meta rvw-role">regra {String(i + 1).padStart(2, '0')}</div>
+            <div class="rvw-name">{r.title}</div>
           </div>
-          <p class="q">“{r.quote}”</p>
+          <p class="q">{r.text}</p>
         </div>
       ))}
     </div>

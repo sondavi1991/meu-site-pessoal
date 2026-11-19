@@ -256,7 +256,7 @@ export const SERVICES = [
 
 export const CAREER = [
   {
-    from: '[ANO]',
+    from: '2025',
     to: 'hoje',
     hash: 'a1f3c9e',
     where: 'Site Sob Medida · Fundador',
@@ -265,37 +265,55 @@ export const CAREER = [
     current: true,
   },
   {
-    from: '[ANO]',
-    to: '[ANO]',
+    from: '2022',
+    to: 'hoje',
+    hash: '5b2e8f1',
+    where: 'Agência Ótima Ideia',
+    role: 'Gestor de Projetos',
+    text: 'Escopo, prazos e prioridades de projetos digitais, fazendo a ponte entre o cliente e o time técnico.',
+  },
+  {
+    from: '2017',
+    to: '2025',
+    hash: '3c88e17',
+    where: 'Freelancer',
+    role: 'Desenvolvedor full stack',
+    text: 'Sites, landing pages e sistemas para clientes de vários segmentos, do primeiro briefing ao deploy.',
+  },
+  {
+    from: '2013',
+    to: '2017',
     hash: '7d20b4a',
     where: 'Inteligência Relacional · Escola da Inteligência',
     role: 'Desenvolvedor PHP e Moodle',
     text: 'Anos colocando plataformas EAD de pé e fazendo elas crescerem sem cair.',
   },
   {
-    from: '[ANO]',
-    hash: '3c88e17',
-    where: 'Formação',
-    role: 'Pós em Engenharia de Software',
-    text: 'Graduação em Análise e Desenvolvimento de Sistemas e certificação em otimização web.',
-  },
-  {
-    from: '[ANO]',
+    from: '2009',
     hash: '0e91d02',
-    where: 'Primeiro commit · [Empresa]',
+    where: 'Primeiro commit · Blogspot',
     role: 'Primeiro site no ar',
-    text: '[Conte como tudo começou.]',
+    text: 'Subir site no Blogspot conta como deploy, sim. Foi ali que eu peguei gosto pela coisa.',
   },
 ];
 
 /* ------------------------------------------------------------------ */
-/* Depoimentos                                                         */
+/* Regras da casa (seção "Revisado e aprovado", no lugar de depoimentos) */
 /* ------------------------------------------------------------------ */
 
-export const REVIEWS = [
-  { name: '[Nome do cliente]', role: '[Cargo]', company: '[Empresa]', quote: '[Depoimento real do cliente sobre o resultado do projeto.]' },
-  { name: '[Nome do cliente]', role: '[Cargo]', company: '[Empresa]', quote: '[Depoimento real do cliente sobre o resultado do projeto.]' },
-  { name: '[Nome do cliente]', role: '[Cargo]', company: '[Empresa]', quote: '[Depoimento real do cliente sobre o resultado do projeto.]' },
+export const HOUSE_RULES = [
+  {
+    title: 'Escopo antes do código',
+    text: 'Escopo combinado e plano no papel antes da primeira linha. Se alguma coisa mudar no meio do caminho, a gente conversa antes de mudar o código.',
+  },
+  {
+    title: 'Nada de “funciona na minha máquina”',
+    text: 'Rastreamento testado, backup em dia e documentação na entrega, do site pequeno ao sistema inteiro.',
+  },
+  {
+    title: 'IA com responsabilidade',
+    text: 'A IA acelera o trabalho, mas toda linha passa pela minha revisão antes de ir pro ar. Quem assina o commit sou eu.',
+  },
 ];
 
 /* ------------------------------------------------------------------ */
