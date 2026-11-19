@@ -17,6 +17,8 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : un
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- marca que o JS está ativo: estados iniciais de animação só valem com ele -->
+    <script is:inline>document.documentElement.classList.add('js');</script>
     <title>{title}</title>
     <meta name="description" content={description} />
     {canonical && <link rel="canonical" href={canonical} />}

@@ -8,9 +8,13 @@ import { PROJECTS } from '../data/site';
   <div class="wrap">
     <h2 class="disp h2" style="max-width: 13ch">Cinco projetos que você pode <span class="lime">abrir agora.</span></h2>
     <p class="lead">Nada de mockup: cada case é um site em produção, com o que eu fiz e com o que ele foi construído.</p>
-    <div class="pcards">
+    <div class="pcards" style={`timeline-scope: ${PROJECTS.map((_, i) => `--pc${i}`).join(', ')}`}>
       {PROJECTS.map((p, i) => (
-        <article class="pcard" style={`top: ${104 + i * 14}px`}>
+        <article
+          class="pcard"
+          data-sink={i < PROJECTS.length - 1 ? '' : undefined}
+          style={`top: ${104 + i * 14}px; view-timeline-name: --pc${i}; --next-tl: --pc${i + 1}`}
+        >
           <div class="tx">
             <div class="meta pcard-meta"><span>{p.segment}</span><span>{p.year}</span></div>
             <h3 class="disp pcard-title">{p.name}</h3>

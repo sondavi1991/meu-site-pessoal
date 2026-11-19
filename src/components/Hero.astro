@@ -16,13 +16,25 @@ for (const p of parts) {
   if (last && !last.g && !g) last.s += p;
   else chunks.push({ s: p, g });
 }
+
+// Título quebrado em palavras para a entrada (cada palavra sobe por trás de uma máscara).
+const titleWords = [
+  ...'Olá, eu sou o Davi. Engenheiro de software'.split(' ').map((t) => ({ t, lime: false })),
+  ...'full stack.'.split(' ').map((t) => ({ t, lime: true })),
+];
+
+const commitMsg = 'feat(lp): GA4 + GTM + pixel Meta';
 ---
 
 <section id="topo" class="hero">
   <div class="wrap hero-in">
     <div class="hero-copy">
       <h1 class="disp hero-title">
-        Olá, eu sou o Davi. Engenheiro de software <span class="lime">full stack.</span>
+        {titleWords.map((w, i) => (
+          <>
+            <span class:list={['wd', w.lime && 'lime']}><span style={`--i: ${i}`}>{w.t}</span></span>{' '}
+          </>
+        ))}
       </h1>
       <p class="lead hero-lead">
         Há mais de 10 anos crio sites, landing pages e sistemas sob medida, hoje principalmente com
@@ -54,7 +66,9 @@ for (const p of parts) {
         <pre class="code" aria-hidden="true">{chunks.map((c) => (c.g ? <span class="g">{c.s}</span> : c.s))}</pre>
         <div class="commit">
           <div class="commit-top"><span>main</span><span>davi/sitesobmedida</span></div>
-          <div class="commit-msg">feat(lp): GA4 + GTM + pixel Meta</div>
+          <div class="commit-msg" style={`--n: ${commitMsg.length}`}>
+            <span class="typed">{commitMsg}</span><span class="caret" aria-hidden="true"></span>
+          </div>
           <div class="commit-ok">eventos testados, no ar</div>
         </div>
       </div>
@@ -64,18 +78,52 @@ for (const p of parts) {
 
 <script>
   // Revela o código sob o cursor (máscara posicionada em passos de 12px).
+  // Na primeira vez que a foto aparece, o código "varre" a foto sozinho (a abertura do hero);
+  // no celular é a única chance de ver o efeito, por isso dispara quando a foto entra na tela.
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   for (const hv of document.querySelectorAll<HTMLElement>('[data-hero-visual]')) {
     const code = hv.querySelector<HTMLElement>('.code');
     if (!code) continue;
     const snap = (n: number) => Math.round(n / 12) * 12 + 'px';
+    const place = (x: number, y: number) => {
+      code.style.setProperty('--mx', snap(x));
+      code.style.setProperty('--my', snap(y));
+    };
+    const hide = () => place(-999, -999);
+    let userMoved = false;
+
     hv.addEventListener('mousemove', (e) => {
+      userMoved = true;
       const r = hv.getBoundingClientRect();
-      code.style.setProperty('--mx', snap(e.clientX - r.left));
-      code.style.setProperty('--my', snap(e.clientY - r.top));
+      place(e.clientX - r.left, e.clientY - r.top);
     });
-    hv.addEventListener('mouseleave', () => {
-      code.style.setProperty('--mx', '-999px');
-      code.style.setProperty('--my', '-999px');
-    });
+    hv.addEventListener('mouseleave', hide);
+
+    const sweep = () => {
+      const { width: w, height: h } = hv.getBoundingClientRect();
+      const duration = 1500;
+      const start = performance.now();
+      const frame = (now: number) => {
+        if (userMoved) return; // o visitante assumiu o controle
+        const t = Math.min(1, (now - start) / duration);
+        const e = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        place(-150 + e * (w + 300), h * 0.4 + Math.sin(e * Math.PI * 2) * h * 0.12);
+        if (t < 1) requestAnimationFrame(frame);
+        else hide();
+      };
+      requestAnimationFrame(frame);
+    };
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        io.disconnect();
+        hv.classList.add('is-in');
+        if (!reduce) setTimeout(sweep, 350);
+      },
+      { threshold: 0.6 },
+    );
+    io.observe(hv);
   }
 </script>

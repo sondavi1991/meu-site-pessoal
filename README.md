@@ -57,8 +57,13 @@ pie showData
 
 - **Código sob o cursor.** No hero, a foto revela trechos reais de código por onde o mouse passa:
   uma máscara em CSS, posicionada por um script de poucas linhas.
-- **Animações guiadas pelo scroll, em CSS puro.** Os anéis de números, o texto que acende palavra
-  por palavra e a linha do tempo da carreira usam `animation-timeline`, com versão estática onde o
+- **Abertura do hero.** As palavras do título sobem por trás de uma máscara, o código varre a foto
+  uma vez e o commit é digitado caractere por caractere. No celular, a sequência dispara quando a
+  foto entra na tela.
+- **Animações guiadas pelo scroll, em CSS puro.** A pilha de projetos ganha profundidade (o card de
+  trás afunda quando o próximo chega), a seção de números abre em círculo e conta junto com os
+  anéis, o texto do Sobre acende palavra por palavra, a carreira é digitada como um `git log` e o
+  nome do rodapé sobe letra a letra. Tudo com `animation-timeline` e versão estática onde o
   navegador não suporta.
 - **Menu lateral no celular** com `<dialog>` nativo: prende o foco, fecha com Esc ou tocando fora
   e devolve o foco ao botão. O menu destaca a seção que está na tela.

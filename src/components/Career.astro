@@ -24,7 +24,10 @@ import { CAREER, SITE } from '../data/site';
                 {' '}<span class="muted">até</span> <b class:list={[c.current && 'lime']}>{c.to}</b>
               </>
             )}
-            <div class="tli-hash">{c.hash}</div>
+            <div class="tli-ref">
+              <span class="tli-hash">{c.hash}</span>
+              {c.current && <span class="head-tag">HEAD → main</span>}
+            </div>
           </div>
           <div>
             <div class="meta">{c.where}</div>

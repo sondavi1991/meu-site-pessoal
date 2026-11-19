@@ -35,7 +35,11 @@ const cols = [
       <span>{SITE.city} · <span class="mono clock" data-clock>--:--</span></span>
       <span>© {year} {SITE.name}</span>
     </div>
-    <p class="giant" aria-hidden="true">{SITE.name}</p>
+    <p class="giant" aria-hidden="true">
+      {[...SITE.name].map((ch, i) => (
+        <span class="gl" style={`animation-range: entry ${i * 5}% entry ${i * 5 + 45}%`}>{ch === ' ' ? '\u00a0' : ch}</span>
+      ))}
+    </p>
   </div>
 </footer>
 

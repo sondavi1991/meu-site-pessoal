@@ -2,6 +2,11 @@
 import { DELIVERY_CHECKLIST, RINGS } from '../data/site';
 
 const LEN = 540.35; // circunferência do anel (2πr, r = 86)
+// "10+" → { to: 10, suffix: "+" }; valores não numéricos (ex.: "[XX]") ficam estáticos
+const parse = (v: string) => {
+  const m = v.match(/^(\d+)(.*)$/);
+  return m ? { to: Number(m[1]), suffix: m[2] } : null;
+};
 ---
 
 <section class="numbers">
@@ -23,7 +28,17 @@ const LEN = 540.35; // circunferência do anel (2πr, r = 86)
             </svg>
             <div class="ring-val">
               <div>
-                <div class="disp ring-num">{r.value}</div>
+                {(() => {
+                  const n = parse(r.value);
+                  return n ? (
+                    <div class="disp ring-num">
+                      <span class="sr-only">{r.value}</span>
+                      <span class="count" style={`--to: ${n.to}`} aria-hidden="true"></span><span aria-hidden="true">{n.suffix}</span>
+                    </div>
+                  ) : (
+                    <div class="disp ring-num">{r.value}</div>
+                  );
+                })()}
                 <div class="mono ring-sub">{r.sub}</div>
               </div>
             </div>
