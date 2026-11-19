@@ -22,7 +22,7 @@ export default defineConfig({
       options: { experimental: { variableAxis: { opsz: [['12', '96']] } } },
     },
     {
-      name: 'Geist',
+      name: 'Schibsted Grotesk',
       cssVariable: '--font-body',
       provider: google,
       weights: ['400 600'],

@@ -10,7 +10,7 @@ feito para carregar rápido até no 4G.
 [![Astro 7](https://img.shields.io/badge/Astro-7-0b0c0e?style=flat-square&logo=astro&logoColor=c6ff3d)](https://astro.build)
 [![TypeScript strict](https://img.shields.io/badge/TypeScript-strict-0b0c0e?style=flat-square&logo=typescript&logoColor=c6ff3d)](tsconfig.json)
 [![JS no navegador](https://img.shields.io/badge/JS_no_navegador-2%2C3_kB-c6ff3d?style=flat-square&labelColor=0b0c0e)](#em-números)
-[![Primeira carga](https://img.shields.io/badge/primeira_carga-234_kB-c6ff3d?style=flat-square&labelColor=0b0c0e)](#em-números)
+[![Primeira carga](https://img.shields.io/badge/primeira_carga-252_kB-c6ff3d?style=flat-square&labelColor=0b0c0e)](#em-números)
 [![Node](https://img.shields.io/badge/node-%E2%89%A522.23-0b0c0e?style=flat-square&logo=nodedotjs&logoColor=c6ff3d)](.nvmrc)
 
 [LinkedIn](https://www.linkedin.com/in/davi-manoel/) · [Site Sob Medida](https://www.sitesobmedida.com.br/) · [GitHub](https://github.com/sondavi1991)
@@ -26,7 +26,7 @@ Medido no build de produção, primeira visita em desktop, sem cache:
 | Métrica | Valor |
 | --- | --- |
 | Requisições | **8** |
-| Peso transferido | **~234 kB** (comprimido) |
+| Peso transferido | **~252 kB** (comprimido) |
 | JavaScript | **2,3 kB**, embutido no HTML, sem framework |
 | Fontes | 3 arquivos variáveis WOFF2, servidos pelo próprio site |
 | Imagens | WebP responsivo, só o hero carrega de imediato |
@@ -35,7 +35,7 @@ Medido no build de produção, primeira visita em desktop, sem cache:
 %%{init: {'theme':'base','themeVariables':{'pie1':'#c6ff3d','pie2':'#7a9a26','pie3':'#3d4a14','pie4':'#a3a8b0','pieStrokeColor':'#0b0c0e','pieOuterStrokeColor':'#0b0c0e','pieTitleTextSize':'16px','pieSectionTextColor':'#0b0c0e','pieLegendTextColor':'#a3a8b0'}}}%%
 pie showData
     title Primeira carga por tipo (kB comprimidos)
-    "Fontes" : 137.5
+    "Fontes" : 155.1
     "Imagens" : 79.2
     "HTML + JS embutido" : 11.7
     "CSS" : 5.7
@@ -64,7 +64,7 @@ pie showData
   e devolve o foco ao botão. O menu destaca a seção que está na tela.
 - **Teclado de stack interativo.** Funciona com mouse, toque e Tab. No celular, o painel de
   descrição acompanha a rolagem.
-- **Fontes sem depender do Google.** Bricolage Grotesque, Geist e JetBrains Mono são baixadas no
+- **Fontes sem depender do Google.** Bricolage Grotesque, Schibsted Grotesk e JetBrains Mono são baixadas no
   build (com o eixo de tamanho óptico da Bricolage) e servidas pelo próprio site, com `preload` e
   fonte reserva calibrada para a página não “pular” enquanto carrega.
 - **Conteúdo separado do layout.** Textos, projetos, stack, carreira e FAQ moram num único arquivo
@@ -103,7 +103,7 @@ flowchart LR
 | Framework | [Astro 7](https://astro.build), saída estática |
 | Linguagem | TypeScript em modo `strict` |
 | Estilos | CSS puro com custom properties |
-| Fontes | Fonts API do Astro: Bricolage Grotesque, Geist e JetBrains Mono |
+| Fontes | Fonts API do Astro: Bricolage Grotesque, Schibsted Grotesk e JetBrains Mono |
 | Imagens | `astro:assets` + Sharp (WebP em vários tamanhos) |
 | Interações | `<script>` nativos, sem framework de UI |
 
