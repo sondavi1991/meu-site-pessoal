@@ -1,0 +1,18 @@
+---
+import Icon, { type IconName } from './Icon.astro';
+
+interface Props {
+  href: string;
+  variant?: 'lime' | 'ghost';
+  icon?: IconName;
+  size?: 'sm';
+  external?: boolean;
+}
+
+const { href, variant = 'lime', icon, size, external = false } = Astro.props;
+const target = external ? { target: '_blank', rel: 'noopener' } : {};
+---
+
+<a class:list={['btn', `btn-${variant}`, size === 'sm' && 'btn-sm']} href={href} {...target}>
+  <slot />{icon && <span class="ic"><Icon name={icon} /></span>}
+</a>

@@ -1,0 +1,69 @@
+---
+import { STACK, STACK_DEFAULT } from '../data/site';
+
+const group = STACK.find((g) => g.keys.some((k) => k.name === STACK_DEFAULT)) ?? STACK[0];
+const sel = { group: group.name, ...(group.keys.find((k) => k.name === STACK_DEFAULT) ?? group.keys[0]) };
+---
+
+<section id="stack" class="sec">
+  <div class="wrap">
+    <h2 class="disp h2" style="max-width: 14ch">As teclas que eu <span class="lime">aperto</span> todo dia.</h2>
+    <p class="lead">As ferramentas que eu escolheria de novo amanhã. Passe o mouse ou use Tab para ver para que serve cada uma.</p>
+    <div class="stack" data-stack>
+      <div class="kb">
+        {STACK.map((g) => (
+          <div class="kb-row">
+            <div class="meta kb-label">{g.name}</div>
+            <div class="kb-keys">
+              {g.keys.map((k) => {
+                const on = k.name === sel.name;
+                return (
+                  <button
+                    class:list={['key', on && 'on']}
+                    type="button"
+                    aria-pressed={on ? 'true' : 'false'}
+                    data-group={g.name}
+                    data-name={k.name}
+                    data-tag={k.tag}
+                    data-note={k.note}
+                  >
+                    <small>{k.tag}</small>{k.name}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="kb-panel" aria-live="polite">
+        <div class="meta" data-field="group">{sel.group}</div>
+        <div class="disp kb-name" data-field="name">{sel.name}</div>
+        <div class="lime mono kb-tag" data-field="tag">{sel.tag}</div>
+        <p class="kb-note" data-field="note">{sel.note}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  for (const root of document.querySelectorAll<HTMLElement>('[data-stack]')) {
+    const keys = [...root.querySelectorAll<HTMLButtonElement>('.key')];
+    const fields = ['group', 'name', 'tag', 'note'] as const;
+
+    const pick = (btn: HTMLButtonElement) => {
+      if (btn.classList.contains('on')) return;
+      for (const k of keys) {
+        k.classList.toggle('on', k === btn);
+        k.setAttribute('aria-pressed', String(k === btn));
+      }
+      for (const f of fields) {
+        const el = root.querySelector<HTMLElement>(`[data-field="${f}"]`);
+        if (el) el.textContent = btn.dataset[f] ?? '';
+      }
+    };
+
+    for (const k of keys) {
+      for (const ev of ['mouseenter', 'focus', 'click']) k.addEventListener(ev, () => pick(k));
+    }
+  }
+</script>

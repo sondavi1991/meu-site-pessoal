@@ -1,0 +1,17 @@
+---
+import Button from './Button.astro';
+import { NAV, SITE } from '../data/site';
+---
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#topo">{SITE.name}<span class="cursor"></span></a>
+    <nav class="links nav-links" aria-label="Principal">
+      {NAV.map((item) => <a class="nl" href={item.href}>{item.label}</a>)}
+    </nav>
+    <div class="nav-cta">
+      <span class="links meta status"><span class="dot"></span>{SITE.status}</span>
+      <Button href={SITE.cvUrl} size="sm">Baixar CV</Button>
+    </div>
+  </div>
+</header>

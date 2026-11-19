@@ -1,0 +1,39 @@
+---
+import { DELIVERY_CHECKLIST, RINGS } from '../data/site';
+
+const LEN = 540.35; // circunferência do anel (2πr, r = 86)
+---
+
+<section class="numbers">
+  <div class="wrap">
+    <h2 class="disp h2">Números, não <span class="hl">adjetivos.</span></h2>
+    <p class="numbers-lead">Experiência medida em projetos entregues e em sites que continuam no ar, rápidos e seguros.</p>
+    <div class="rings">
+      {RINGS.map((r) => (
+        <div class="ring-item">
+          <div class="mono ring-label">{r.label}</div>
+          <div class="ring-box">
+            <svg class="ring" width="180" height="180" viewBox="0 0 200 200" aria-hidden="true">
+              <circle cx="100" cy="100" r="86" fill="none" stroke="rgba(11,12,14,.15)" stroke-width="10"></circle>
+              <circle
+                class="p" cx="100" cy="100" r="86" fill="none" stroke="#0b0c0e" stroke-width="10"
+                stroke-linecap="round" transform="rotate(-90 100 100)"
+                style={`--len: ${LEN}; --off: ${(LEN * (1 - r.progress)).toFixed(2)}`}
+              ></circle>
+            </svg>
+            <div class="ring-val">
+              <div>
+                <div class="disp ring-num">{r.value}</div>
+                <div class="mono ring-sub">{r.sub}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="checklist">
+      <div class="meta">Checklist de entrega, em todo projeto</div>
+      <div class="checklist-grid">{DELIVERY_CHECKLIST.map((item) => <span class="inc">{item}</span>)}</div>
+    </div>
+  </div>
+</section>

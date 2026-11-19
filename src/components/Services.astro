@@ -1,0 +1,21 @@
+---
+import Accordion from './Accordion.astro';
+import { SERVICES } from '../data/site';
+---
+
+<section id="servicos" class="sec sec-tight">
+  <div class="wrap">
+    <h2 class="disp h2" style="max-width: 15ch">Cinco formas de me colocar para <span class="lime">trabalhar.</span></h2>
+    <p class="lead">Escopo fechado, plano escrito antes de qualquer código e comunicação direta do início ao fim.</p>
+    <div class="acc-list">
+      {SERVICES.map((s, i) => (
+        <Accordion title={s.title} titleClass="disp svc-title" open={i === 0}>
+          <div class="svc-body">
+            <p class="svc-text">{s.text}</p>
+            <div class="svc-items">{s.items.map((item) => <span class="inc">{item}</span>)}</div>
+          </div>
+        </Accordion>
+      ))}
+    </div>
+  </div>
+</section>

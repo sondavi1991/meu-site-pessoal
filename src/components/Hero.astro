@@ -1,0 +1,81 @@
+---
+import { Image } from 'astro:assets';
+import Button from './Button.astro';
+import foto from '../assets/davi-manoel.webp';
+import { HERO_CODE, SITE } from '../data/site';
+
+// Gera o "papel de parede" de código uma vez, no build.
+// Cerca de 24% dos tokens ficam em lima (seed fixa = sempre o mesmo resultado).
+const parts = HERO_CODE.repeat(8).match(/[A-Za-z_$]+|[0-9]+|\s+|[^A-Za-z0-9_$\s]+/g) ?? [];
+let seed = 7;
+const chunks: { s: string; g: boolean }[] = [];
+for (const p of parts) {
+  seed = (seed * 9301 + 49297) % 233280;
+  const g = /\S/.test(p) && seed / 233280 < 0.24;
+  const last = chunks[chunks.length - 1];
+  if (last && !last.g && !g) last.s += p;
+  else chunks.push({ s: p, g });
+}
+---
+
+<section id="topo" class="hero">
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <h1 class="disp hero-title">
+        Olá, eu sou o Davi. Engenheiro de software <span class="lime">full stack.</span>
+      </h1>
+      <p class="lead hero-lead">
+        Há mais de 10 anos crio sites, landing pages e sistemas sob medida, hoje principalmente com
+        Laravel, Node.js e WordPress. Gosto de código limpo, páginas rápidas e de entender o problema
+        antes de escrever a primeira linha. Também atuo como gerente de projetos e estou aberto a
+        vagas remotas.
+      </p>
+      <div class="actions">
+        <Button href={SITE.cvUrl} icon="download">Baixar CV</Button>
+        <Button href={SITE.linkedin} variant="ghost" icon="external" external>Ver LinkedIn</Button>
+      </div>
+      <p class="meta hero-live">
+        No ar agora: <a href="https://scudellerdealmeida.com.br/" target="_blank" rel="noopener">Scudeller de Almeida</a>,
+        <a href="https://krooze.com/" target="_blank" rel="noopener">Krooze</a>,
+        <a href="https://www.sekiama.com.br/" target="_blank" rel="noopener">Sekiama</a> e mais de 30 sites.
+      </p>
+    </div>
+
+    <div class="hero-media">
+      <div class="hv" data-hero-visual>
+        <Image
+          src={foto}
+          alt="Foto de Davi Manoel"
+          widths={[480, 720, 960]}
+          sizes="(max-width: 900px) 100vw, 52vw"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <pre class="code" aria-hidden="true">{chunks.map((c) => (c.g ? <span class="g">{c.s}</span> : c.s))}</pre>
+        <div class="commit">
+          <div class="commit-top"><span>main</span><span>davi/sitesobmedida</span></div>
+          <div class="commit-msg">feat(lp): GA4 + GTM + pixel Meta</div>
+          <div class="commit-ok">eventos testados, no ar</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Revela o código sob o cursor (máscara posicionada em passos de 12px).
+  for (const hv of document.querySelectorAll<HTMLElement>('[data-hero-visual]')) {
+    const code = hv.querySelector<HTMLElement>('.code');
+    if (!code) continue;
+    const snap = (n: number) => Math.round(n / 12) * 12 + 'px';
+    hv.addEventListener('mousemove', (e) => {
+      const r = hv.getBoundingClientRect();
+      code.style.setProperty('--mx', snap(e.clientX - r.left));
+      code.style.setProperty('--my', snap(e.clientY - r.top));
+    });
+    hv.addEventListener('mouseleave', () => {
+      code.style.setProperty('--mx', '-999px');
+      code.style.setProperty('--my', '-999px');
+    });
+  }
+</script>

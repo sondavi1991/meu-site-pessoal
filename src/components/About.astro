@@ -1,0 +1,24 @@
+---
+import { ABOUT_TEXT, NOW } from '../data/site';
+
+// Cada palavra acende em sequência conforme o bloco cruza a tela.
+const words = ABOUT_TEXT.split(' ');
+const range = (i: number) => {
+  const a = 10 + (i / words.length) * 45;
+  return `animation-range: cover ${a.toFixed(1)}% cover ${(a + 4).toFixed(1)}%`;
+};
+---
+
+<section id="sobre" class="sec sec-tight">
+  <div class="wrap">
+    <h2 class="disp rv about-title">{words.map((w, i) => <span style={range(i)}>{w} </span>)}</h2>
+    <div class="now">
+      {NOW.map((n) => (
+        <div>
+          <div class="meta">{n.label}</div>
+          <div class="now-v">{n.value}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

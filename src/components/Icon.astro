@@ -1,0 +1,32 @@
+---
+const ICONS = {
+  download: { vb: 16, d: 'M8 2v9M4 7l4 4 4-4M3 14h10' },
+  external: { vb: 16, d: 'M5 11l6-6M6 5h5v5' },
+  arrow: { vb: 16, d: 'M3 8h10M9 4l4 4-4 4' },
+  check: { vb: 16, d: 'M3 8.5l3 3 7-7' },
+  plus: { vb: 14, d: 'M7 1v12M1 7h12' },
+} as const;
+
+export type IconName = keyof typeof ICONS;
+
+interface Props {
+  name: IconName;
+  size?: number;
+  strokeWidth?: number;
+}
+
+const { name, size = 16, strokeWidth = 1.8 } = Astro.props;
+const { vb, d } = ICONS[name];
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox={`0 0 ${vb} ${vb}`}
+  fill="none"
+  stroke="currentColor"
+  stroke-width={strokeWidth}
+  aria-hidden="true"
+>
+  <path d={d}></path>
+</svg>

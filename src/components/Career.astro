@@ -1,0 +1,38 @@
+---
+import Button from './Button.astro';
+import { CAREER, SITE } from '../data/site';
+---
+
+<section class="sec sec-tight">
+  <div class="wrap split">
+    <div class="career-intro">
+      <h2 class="disp h2">Carreira</h2>
+      <p class="mono lime git">$ git log --carreira</p>
+      <p class="lead">Mais de uma década entre agências, empresas de educação e projetos próprios.</p>
+      <div class="career-actions">
+        <Button href={SITE.cvUrl} icon="download">Baixar CV</Button>
+        <Button href={SITE.linkedin} variant="ghost" icon="external" external>Ver LinkedIn</Button>
+      </div>
+    </div>
+    <div class="tl">
+      {CAREER.map((c) => (
+        <div class:list={['tli', c.current && 'cur']}>
+          <div class="mono tli-when">
+            <b>{c.from}</b>
+            {c.to && (
+              <>
+                {' '}<span class="muted">até</span> <b class:list={[c.current && 'lime']}>{c.to}</b>
+              </>
+            )}
+            <div class="tli-hash">{c.hash}</div>
+          </div>
+          <div>
+            <div class="meta">{c.where}</div>
+            <h3 class="disp tli-role">{c.role}</h3>
+            <p class="tli-text">{c.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

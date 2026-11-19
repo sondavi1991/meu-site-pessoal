@@ -1,0 +1,30 @@
+---
+import { Image } from 'astro:assets';
+import Button from './Button.astro';
+import { PROJECTS } from '../data/site';
+---
+
+<section id="projetos" class="sec">
+  <div class="wrap">
+    <h2 class="disp h2" style="max-width: 13ch">Cinco projetos que você pode <span class="lime">abrir agora.</span></h2>
+    <p class="lead">Nada de mockup: cada case é um site em produção, com o que eu fiz e com o que ele foi construído.</p>
+    <div class="pcards">
+      {PROJECTS.map((p, i) => (
+        <article class="pcard" style={`top: ${104 + i * 14}px`}>
+          <div class="tx">
+            <div class="meta pcard-meta"><span>{p.segment}</span><span>{p.year}</span></div>
+            <h3 class="disp pcard-title">{p.name}</h3>
+            <p class="pcard-desc">{p.description}</p>
+            <div class="tags">{p.tags.map((t) => <span class="tag">{t}</span>)}</div>
+            <div class="pcard-cta">
+              <Button href={p.url} variant="ghost" icon="external" external>Abrir site</Button>
+            </div>
+          </div>
+          <div class="im">
+            <Image src={p.image} alt={`Página inicial do site ${p.name}`} widths={[600, 900, 1200]} sizes="(max-width: 900px) 100vw, 55vw" />
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

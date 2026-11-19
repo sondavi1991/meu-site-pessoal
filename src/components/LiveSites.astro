@@ -1,0 +1,16 @@
+---
+import { LIVE_SITES } from '../data/site';
+---
+
+<section class="strip">
+  <span class="meta strip-label">Mais de 30 sites no ar</span>
+  <div class="mq">
+    <div class="mq-track">
+      {LIVE_SITES.map((s) => <a class="mq-item" href={s.url} target="_blank" rel="noopener">{s.name}</a>)}
+      {/* cópia para o loop contínuo: escondida de leitores de tela e do Tab */}
+      {LIVE_SITES.map((s) => (
+        <a class="mq-item" href={s.url} target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">{s.name}</a>
+      ))}
+    </div>
+  </div>
+</section>

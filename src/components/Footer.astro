@@ -1,0 +1,56 @@
+---
+import { SITE } from '../data/site';
+
+const year = new Date().getFullYear();
+const cols = [
+  { title: 'Site', links: [{ label: 'Projetos', href: '#projetos' }, { label: 'Serviços', href: '#servicos' }, { label: 'Contato', href: '#contato' }] },
+  { title: 'Sobre', links: [{ label: 'Sobre', href: '#sobre' }, { label: 'Stack', href: '#stack' }, { label: 'Currículo', href: SITE.cvUrl }] },
+  {
+    title: 'Redes',
+    links: [
+      { label: 'LinkedIn', href: SITE.linkedin, external: true },
+      { label: 'Site Sob Medida', href: SITE.empresa, external: true },
+      { label: 'GitHub', href: SITE.github, external: true },
+    ],
+  },
+];
+---
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <p class="meta footer-status"><span class="dot"></span>{SITE.status}</p>
+      <div class="footer-cols">
+        {cols.map((c) => (
+          <div>
+            <div class="meta">{c.title}</div>
+            {c.links.map((l) => (
+              <a class="flink" href={l.href} {...('external' in l && l.external ? { target: '_blank', rel: 'noopener' } : {})}>{l.label}</a>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class="meta footer-bottom">
+      <span>{SITE.city} · <span class="mono clock" data-clock>--:--</span></span>
+      <span>© {year} {SITE.name}</span>
+    </div>
+    <p class="giant" aria-hidden="true">{SITE.name}</p>
+  </div>
+</footer>
+
+<script>
+  // Hora local de Ribeirão Preto, atualizada a cada 5s.
+  const el = document.querySelector<HTMLElement>('[data-clock]');
+  if (el) {
+    const tick = () => {
+      try {
+        el.textContent = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Sao_Paulo' });
+      } catch {
+        el.textContent = '--:--';
+      }
+    };
+    tick();
+    setInterval(tick, 5000);
+  }
+</script>

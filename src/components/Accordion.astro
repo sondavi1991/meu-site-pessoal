@@ -1,0 +1,19 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  title: string;
+  titleClass?: string;
+  open?: boolean;
+}
+
+const { title, titleClass, open = false } = Astro.props;
+---
+
+<details class="acc" open={open}>
+  <summary>
+    <span class:list={['ttl', titleClass]}>{title}</span>
+    <span class="pm" aria-hidden="true"><Icon name="plus" size={14} /></span>
+  </summary>
+  <slot />
+</details>

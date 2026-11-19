@@ -1,0 +1,82 @@
+# ------------------------------------------------------------------
+# Build e cache do Astro
+# ------------------------------------------------------------------
+dist/
+.astro/
+.vercel/
+.netlify/
+.wrangler/
+
+# ------------------------------------------------------------------
+# Dependências
+# ------------------------------------------------------------------
+node_modules/
+.pnpm-store/
+.yarn/*
+!.yarn/releases
+
+# ------------------------------------------------------------------
+# Variáveis de ambiente e segredos
+# ------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ------------------------------------------------------------------
+# Logs
+# ------------------------------------------------------------------
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ------------------------------------------------------------------
+# Editores e sistema operacional
+# ------------------------------------------------------------------
+.vscode/
+.idea/
+.fleet/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ------------------------------------------------------------------
+# Assistentes de IA: configurações, memórias e documentos de trabalho
+# ------------------------------------------------------------------
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+.mcp.json
+AGENTS.md
+GEMINI.md
+.gemini/
+.cursor/
+.cursorrules
+.cursorignore
+.windsurf/
+.windsurfrules
+.github/copilot-instructions.md
+.aider*
+.continue/
+.codeium/
+.cline/
+.clinerules
+.roo/
+.kiro/
+.specstory/
+.ai/
+docs/ai/
+
+# ------------------------------------------------------------------
+# Rascunhos e arquivos temporários locais
+# ------------------------------------------------------------------
+tmp/
+.tmp/
+*.local.*
