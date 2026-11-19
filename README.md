@@ -14,8 +14,8 @@ HTML, CSS e alguns scripts pequenos.
   `sizes`.
 - **Conteúdo separado da apresentação.** Textos, projetos, stack, carreira e FAQ ficam em um único
   arquivo de dados; os componentes só cuidam do layout.
-- **Acessível:** HTML semântico, navegação por teclado, foco visível, `aria-*` onde precisa e
-  suporte a `prefers-reduced-motion`.
+- **Acessível:** HTML semântico, navegação por teclado, foco visível e
+  `aria-*` onde precisa.
 
 ## Stack
 
