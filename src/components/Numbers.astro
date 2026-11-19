@@ -2,9 +2,9 @@
 import { DELIVERY_CHECKLIST, RINGS } from '../data/site';
 
 const LEN = 540.35; // circunferência do anel (2πr, r = 86)
-// "10+" → { to: 10, suffix: "+" }; valores não numéricos (ex.: "[XX]") ficam estáticos
+// "10+" → { to: 10, suffix: "+" }; valores com casa decimal (ex.: "1.6k+") ou sem número (ex.: "∞") ficam estáticos
 const parse = (v: string) => {
-  const m = v.match(/^(\d+)(.*)$/);
+  const m = v.match(/^(\d+)(\D*)$/);
   return m ? { to: Number(m[1]), suffix: m[2] } : null;
 };
 ---

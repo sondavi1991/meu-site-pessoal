@@ -226,6 +226,26 @@ html:has(.drawer[open]) { overflow: hidden; }
 .pcard .im { position: relative; overflow: hidden; background: var(--panel); }
 .pcard .im img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.1s var(--ease); }
 .pcard:hover .im img { transform: scale(1.045); }
+/* Print real: janela de navegador sobre o quadriculado, vazando pela direita e por baixo */
+.pcard .im-shot {
+  background-color: #0e1013;
+  background-image:
+    radial-gradient(60% 55% at 72% 62%, rgba(198, 255, 61, 0.08), transparent 70%),
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: auto, 40px 40px, 40px 40px;
+  display: flex;
+  align-items: center;
+}
+.browser { position: relative; flex: none; width: 104%; margin-left: 9%; border: 1px solid var(--line-strong); border-radius: 12px; background: #1b1e23; overflow: hidden; box-shadow: 0 40px 80px -24px rgba(0, 0, 0, 0.85); transition: transform 1.1s var(--ease); }
+.browser-bar { display: flex; align-items: center; gap: 16px; height: 36px; padding: 0 14px; background: #23262c; border-bottom: 1px solid var(--line); }
+.browser-dots { display: flex; gap: 7px; }
+.browser-dots i { width: 10px; height: 10px; border-radius: 50%; background: #4a4f58; }
+.browser-dots i:last-child { background: var(--lime); }
+.browser-url { flex: 0 1 46%; overflow: hidden; padding: 4px 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.05); font-family: var(--f-mono); font-size: 12px; color: var(--mute); white-space: nowrap; text-overflow: ellipsis; }
+.pcard .im .browser img { height: auto; object-fit: initial; }
+.pcard:hover .im .browser img { transform: none; }
+.pcard:hover .browser { transform: translate(-1.5%, -2.5%); }
 
 /* ==================================================================
    Sobre (texto que acende com o scroll)
@@ -417,6 +437,10 @@ details.acc summary:hover .ttl { color: var(--lime); }
   .kb-note { margin-top: 0; padding-top: 12px; font-size: 14px; }
   .pcard { grid-template-columns: 1fr; min-height: 0; }
   .pcard .im { height: 260px; order: -1; }
+  .browser { margin-left: 7%; border-radius: 10px; }
+  .browser-bar { height: 28px; gap: 12px; padding: 0 10px; }
+  .browser-dots i { width: 8px; height: 8px; }
+  .browser-url { font-size: 11px; padding: 3px 10px; }
   .tli { grid-template-columns: 1fr; gap: 6px; }
   .rvw { grid-template-columns: 1fr; }
   .rvw .ln { display: none; }
@@ -447,11 +471,11 @@ details.acc summary:hover .ttl { color: var(--lime); }
 @media (prefers-reduced-motion: reduce) {
   .cursor { animation: none; }
   .rv span { animation: none; color: var(--ink); }
-  .btn, .btn .ic, .key, .pcard .im img, .big-link .nm, .big-link .ar, details.acc summary .pm,
+  .btn, .btn .ic, .key, .pcard .im img, .browser, .big-link .nm, .big-link .ar, details.acc summary .pm,
   .nav-toggle-bars span, .drawer-close, .drawer-arrow, .dm .skip {
     transition-property: color, background-color, border-color, opacity, box-shadow;
   }
-  .btn-lime:hover, .btn:hover .ic, .key:hover, .pcard:hover .im img, .big-link:hover .nm,
+  .btn-lime:hover, .btn:hover .ic, .key:hover, .pcard:hover .im img, .pcard:hover .browser, .big-link:hover .nm,
   .big-link:hover .ar, .drawer-close:hover, .drawer-link:hover .drawer-arrow { transform: none; }
   .drawer, .drawer[open] { transform: none; }
   .drawer { opacity: 0; transition: opacity 0.2s, overlay 0.2s allow-discrete, display 0.2s allow-discrete; }
@@ -504,6 +528,7 @@ details.acc summary:hover .ttl { color: var(--lime); }
 @keyframes sink { to { scale: 0.92; filter: brightness(0.5); } }
 @keyframes sink-blur { to { scale: 0.92; filter: brightness(0.5) blur(1.5px); } }
 @keyframes drift { from { translate: 0 -6%; } to { translate: 0 6%; } }
+@keyframes browser-rise { from { translate: 0 8%; } to { translate: 0 -4%; } }
 
 /* Seção lima: abre em círculo ao entrar na tela */
 @keyframes lime-in { from { clip-path: circle(5% at 50% 18%); } to { clip-path: circle(80% at 50% 50%); } }
@@ -519,6 +544,8 @@ details.acc summary:hover .ttl { color: var(--lime); }
 
   .pcard[data-sink] { animation-name: sink; animation-timing-function: linear; animation-fill-mode: both; animation-timeline: var(--next-tl); animation-range: cover 18% cover 52%; }
   .pcard .im img { scale: 1.13; animation-name: drift; animation-timing-function: linear; animation-fill-mode: both; animation-timeline: view(); animation-range: cover 0% cover 70%; }
+  .pcard .im .browser img { scale: none; animation-name: none; }
+  .browser { animation-name: browser-rise; animation-timing-function: linear; animation-fill-mode: both; animation-timeline: view(); animation-range: cover 0% cover 70%; }
 
   .numbers { animation-name: lime-in; animation-timing-function: linear; animation-fill-mode: both; animation-timeline: view(); animation-range: entry 0% cover 32%; }
 
@@ -538,5 +565,5 @@ details.acc summary:hover .ttl { color: var(--lime); }
 @media (prefers-reduced-motion: reduce) {
   .wd > span, .hero-lead, .hero-copy .actions, .hero-live,
   .hv.is-in img, .hv.is-in .commit, .hv.is-in .typed, .hv.is-in .caret, .hv.is-in .commit-ok,
-  .count, .pcard[data-sink], .pcard .im img, .numbers, .tli-hash, .head-tag, .gl { animation: none !important; }
+  .count, .pcard[data-sink], .pcard .im img, .browser, .numbers, .tli-hash, .head-tag, .gl { animation: none !important; }
 }

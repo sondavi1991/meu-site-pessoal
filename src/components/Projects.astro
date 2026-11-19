@@ -2,6 +2,9 @@
 import { Image } from 'astro:assets';
 import Button from './Button.astro';
 import { PROJECTS } from '../data/site';
+
+// Endereço que aparece na barra da janela de navegador do card
+const host = (url: string) => new URL(url).hostname.replace(/^www\./, '');
 ---
 
 <section id="projetos" class="sec">
@@ -20,12 +23,20 @@ import { PROJECTS } from '../data/site';
             <h3 class="disp pcard-title">{p.name}</h3>
             <p class="pcard-desc">{p.description}</p>
             <div class="tags">{p.tags.map((t) => <span class="tag">{t}</span>)}</div>
-            <div class="pcard-cta">
-              <Button href={p.url} variant="ghost" icon="external" external>Abrir site</Button>
-            </div>
+            {p.url && (
+              <div class="pcard-cta">
+                <Button href={p.url} variant="ghost" icon="external" external>Abrir site</Button>
+              </div>
+            )}
           </div>
-          <div class="im">
-            <Image src={p.image} alt={`Página inicial do site ${p.name}`} widths={[600, 900, 1200]} sizes="(max-width: 900px) 100vw, 55vw" />
+          <div class="im im-shot">
+            <div class="browser">
+              <div class="browser-bar" aria-hidden="true">
+                <span class="browser-dots"><i></i><i></i><i></i></span>
+                <span class="browser-url">{p.url ? host(p.url) : 'em breve no ar'}</span>
+              </div>
+              <Image src={p.image} alt={`Página inicial do projeto ${p.name}`} widths={[600, 900, 1200, 1600]} sizes="(max-width: 900px) 100vw, 55vw" />
+            </div>
           </div>
         </article>
       ))}

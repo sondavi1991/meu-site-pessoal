@@ -1,5 +1,9 @@
 import type { ImageMetadata } from 'astro';
-import placeholder from '../assets/projetos/placeholder.jpg';
+import sonhoEMagia from '../assets/projetos/sonho-e-magia.webp';
+import sekiama from '../assets/projetos/sekiama.webp';
+import jrPedras from '../assets/projetos/jr-pedras.webp';
+import elementary from '../assets/projetos/elementary.webp';
+import unica from '../assets/projetos/unica.webp';
 
 /* ------------------------------------------------------------------ */
 /* Dados gerais                                                        */
@@ -12,7 +16,8 @@ export const SITE = {
     'Engenheiro de software full stack com mais de 10 anos criando sites, landing pages e sistemas sob medida com Laravel, Node.js e WordPress.',
   status: 'Online · aberto a projetos, parcerias e boas conversas',
   city: 'Ribeirão Preto, SP',
-  cvUrl: '#', // TODO: apontar para o PDF do currículo (ex.: /curriculo-davi-manoel.pdf em public/)
+  // download direto do PDF no Drive (abre na mesma aba: o navegador só baixa o arquivo)
+  cvUrl: 'https://drive.google.com/uc?export=download&id=1rrYTUbeHgH0g76BYuYi2Xcmck7lcR9zo',
   linkedin: 'https://www.linkedin.com/in/davi-manoel/',
   github: 'https://github.com/sondavi1991',
   empresa: 'https://www.sitesobmedida.com.br/',
@@ -35,6 +40,7 @@ export const LIVE_SITES = [
   { name: 'Sekiama', url: 'https://www.sekiama.com.br/' },
   { name: 'JR Pedras', url: 'https://www.jrpedras.com.br/' },
   { name: 'Única Instrumentação', url: 'https://unicainstrumentacao.com.br/' },
+  { name: 'Sonho & Magia Viagens', url: 'https://www.smviagens.com.br/' },
   { name: 'Casa da Mentoria', url: 'https://www.casadamentoria.com.br/' },
   { name: 'Krooze', url: 'https://krooze.com/' },
   { name: 'iFinc', url: 'https://ifinc.com.br/' },
@@ -51,56 +57,60 @@ export interface Project {
   year: string;
   description: string;
   tags: string[];
-  url: string;
+  /** Sem url, o projeto ainda não está no ar: o card fica sem o botão "Abrir site". */
+  url?: string;
   image: ImageMetadata;
 }
 
 export const PROJECTS: Project[] = [
   {
-    name: 'Scudeller de Almeida',
-    segment: 'Advocacia',
-    year: '[ANO]',
+    name: 'Única Instrumentação',
+    segment: 'Instrumentação industrial',
+    year: '2025',
     description:
-      'Site institucional para escritório de advocacia: sóbrio, rápido e pensado para gerar contato.',
-    tags: ['WordPress', 'Elementor', 'SEO'],
-    url: 'https://scudellerdealmeida.com.br/',
-    image: placeholder,
+      'Catálogo de equipamentos de medição e testes para a indústria: tema WordPress próprio em código puro, filtros avançados de produtos e painel administrativo sob medida.',
+    tags: ['WordPress', 'Tema próprio', 'Filtros avançados', 'Painel próprio'],
+    url: 'https://unicainstrumentacao.com.br/',
+    image: unica,
   },
   {
-    name: 'Krooze',
-    segment: '[Segmento]',
-    year: '[ANO]',
-    description: '[Em uma frase: o que o cliente precisava e o que você entregou.]',
-    tags: ['[Tecnologia]', '[Tecnologia]'],
-    url: 'https://krooze.com/',
-    image: placeholder,
+    name: 'Sonho & Magia Viagens',
+    segment: 'Turismo pet',
+    year: '2024',
+    description:
+      'Assessoria de viagens para quem não viaja sem o pet: site que explica o processo, passa confiança e leva o tutor direto para o formulário ou o WhatsApp.',
+    tags: ['WordPress', 'Elementor', 'GA4'],
+    url: 'https://www.smviagens.com.br/',
+    image: sonhoEMagia,
   },
   {
-    name: 'Casa da Mentoria',
-    segment: 'Educação',
-    year: '[ANO]',
-    description: '[Em uma frase: o que o cliente precisava e o que você entregou.]',
-    tags: ['[Tecnologia]', '[Tecnologia]'],
-    url: 'https://www.casadamentoria.com.br/',
-    image: placeholder,
+    name: 'Elementary',
+    segment: 'Sistema · Veterinária',
+    year: '2026',
+    description:
+      'Sistema de gestão para clínicas veterinárias do Elementary Instituto Laboratorial: equipe, pacientes e rotina num lugar só. Lançamento em breve.',
+    tags: ['Node.js', 'Fastify', 'React', 'PostgreSQL'],
+    image: elementary,
   },
   {
     name: 'Sekiama',
-    segment: '[Segmento]',
-    year: '[ANO]',
-    description: '[Em uma frase: o que o cliente precisava e o que você entregou.]',
-    tags: ['[Tecnologia]', '[Tecnologia]'],
+    segment: 'E-commerce · Alimentos',
+    year: '2026',
+    description:
+      'Loja das farofas e ingredientes da Amazônia: tema WordPress feito do zero, com WooCommerce integrado a pagamentos, frete e ERP.',
+    tags: ['WordPress', 'Tema próprio', 'WooCommerce', 'ERP'],
     url: 'https://www.sekiama.com.br/',
-    image: placeholder,
+    image: sekiama,
   },
   {
-    name: 'iFinc',
-    segment: 'Finanças',
-    year: '[ANO]',
-    description: '[Em uma frase: o que o cliente precisava e o que você entregou.]',
-    tags: ['[Tecnologia]', '[Tecnologia]'],
-    url: 'https://ifinc.com.br/',
-    image: placeholder,
+    name: 'JR Pedras',
+    segment: 'Pedras e revestimentos',
+    year: '2026',
+    description:
+      'Vitrine de pedras naturais para uma empresa familiar: front em Astro, backend em Laravel e infraestrutura de ponta para carregar rápido e levar direto ao orçamento.',
+    tags: ['Astro', 'Laravel', 'Infra'],
+    url: 'https://www.jrpedras.com.br/',
+    image: jrPedras,
   },
 ];
 
@@ -115,7 +125,7 @@ export const NOW = [
   { label: 'Construindo', value: 'Site Sob Medida, minha empresa' },
   { label: 'Estudando', value: 'Pós em Engenharia de Software' },
   { label: 'Aberto a', value: 'Projetos, parcerias e vagas remotas' },
-  { label: 'Lendo', value: '[Livro que você está lendo]' },
+  { label: 'Lendo', value: 'Competente o Suficiente, do Akita' },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -125,9 +135,10 @@ export const NOW = [
 /** progress: 0 a 1, quanto do anel fica preenchido */
 export const RINGS = [
   { label: 'Experiência', value: '10+', sub: 'anos', progress: 1 },
-  { label: 'Portfólio', value: '30+', sub: 'sites no ar', progress: 1 },
+  { label: 'Portfólio', value: '60+', sub: 'sites no ar', progress: 1 },
   { label: 'Café', value: '∞', sub: 'xícaras', progress: 1 },
-  { label: 'Performance', value: '[XX]', sub: 'Lighthouse médio', progress: 0.9 },
+  // contribuições do último ano no perfil do GitHub (conferir de tempos em tempos)
+  { label: 'GitHub · 12 meses', value: '1.6k+', sub: 'contribuições', progress: 1 },
 ];
 
 export const DELIVERY_CHECKLIST = [
@@ -157,17 +168,25 @@ export const STACK: { name: string; keys: StackKey[] }[] = [
     keys: [
       { name: 'PHP', tag: 'back-end', note: 'Base de quase tudo que eu entrego no servidor, de APIs a integrações.' },
       { name: 'JavaScript', tag: 'front-end', note: 'Interações, rastreamento e tudo que roda no navegador.' },
-      { name: 'TypeScript', tag: 'front-end', note: 'Tipagem para projetos maiores e times que precisam de segurança no código.' },
+      { name: 'TypeScript', tag: 'front e back', note: 'Tipagem para projetos maiores e times que precisam de segurança no código.' },
+      { name: 'Python', tag: 'IA e automação', note: 'Automações, scripts e o ecossistema de IA, de pipelines de RAG a integrações com LLMs.' },
       { name: 'Ruby', tag: 'back-end', note: 'Manutenção e evolução de projetos que já nasceram em Ruby.' },
     ],
   },
   {
-    name: 'Frameworks',
+    name: 'Back-end',
     keys: [
       { name: 'Laravel', tag: 'sob medida', note: 'Minha escolha para sistemas, painéis e plataformas sob medida: rápido de construir e fácil de manter.' },
       { name: 'Node.js', tag: 'APIs', note: 'APIs, automações e integrações em tempo real.' },
+      { name: 'Fastify', tag: 'APIs', note: 'APIs enxutas e rápidas em Node.js, como a do sistema Elementary.' },
+    ],
+  },
+  {
+    name: 'Front-end e mobile',
+    keys: [
+      { name: 'React', tag: 'interfaces', note: 'Interfaces e componentes interativos, de painéis a sistemas inteiros.' },
+      { name: 'Vue', tag: 'interfaces', note: 'Interfaces reativas e diretas, quando o projeto pede algo leve ou já nasceu em Vue.' },
       { name: 'Astro', tag: 'sites', note: 'Sites estáticos muito rápidos. Este aqui, por exemplo.' },
-      { name: 'React', tag: 'front-end', note: 'Interfaces e componentes interativos no front-end.' },
       { name: 'React Native', tag: 'mobile', note: 'Apps para Android e iOS com uma base de código só.' },
     ],
   },
@@ -190,9 +209,11 @@ export const STACK: { name: string; keys: StackKey[] }[] = [
     ],
   },
   {
-    name: 'IA',
+    name: 'Dados e IA',
     keys: [
-      { name: 'Claude Code', tag: 'pair programming', note: 'Par de programação que não cansa. Eu decido a arquitetura, reviso cada linha e assino o commit.' },
+      { name: 'PostgreSQL', tag: 'banco de dados', note: 'Banco relacional de confiança para sistemas que precisam crescer sem perder a consistência.' },
+      { name: 'RAG', tag: 'IA aplicada', note: 'Respostas de IA ancoradas nos documentos e dados do próprio cliente, em vez de chute.' },
+      { name: 'LLMs', tag: 'IA generativa', note: 'Modelos de linguagem integrados a produtos e ao meu dia a dia de código (salve, Claudinho). Eu decido a arquitetura, reviso cada linha e assino o commit.' },
     ],
   },
 ];
