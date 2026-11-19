@@ -1,5 +1,6 @@
 ---
 import Button from './Button.astro';
+import Icon from './Icon.astro';
 import { NAV, SITE } from '../data/site';
 ---
 
@@ -7,11 +8,106 @@ import { NAV, SITE } from '../data/site';
   <div class="wrap nav-in">
     <a class="brand" href="#topo">{SITE.name}<span class="cursor"></span></a>
     <nav class="links nav-links" aria-label="Principal">
-      {NAV.map((item) => <a class="nl" href={item.href}>{item.label}</a>)}
+      {NAV.map((item) => <a class="nl" href={item.href} data-navlink>{item.label}</a>)}
     </nav>
     <div class="nav-cta">
       <span class="links meta status"><span class="dot"></span>{SITE.status}</span>
-      <Button href={SITE.cvUrl} size="sm">Baixar CV</Button>
+      <Button href={SITE.cvUrl} size="sm" class="nav-cv">Baixar CV</Button>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="menu"
+        aria-expanded="false"
+        data-menu-open
+      >
+        <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span></span>
+        <span class="sr-only">Abrir menu</span>
+      </button>
     </div>
   </div>
 </header>
+
+<dialog id="menu" class="drawer" aria-label="Menu" data-menu>
+  <div class="drawer-in">
+    <div class="drawer-head">
+      <span class="meta drawer-path">~/davi-manoel<span class="cursor"></span></span>
+      <button class="drawer-close" type="button" data-menu-close>
+        <Icon name="close" size={18} />
+        <span class="sr-only">Fechar menu</span>
+      </button>
+    </div>
+
+    <nav class="drawer-nav" aria-label="Seções">
+      {
+        NAV.map((item, i) => (
+          <a class="drawer-link" href={item.href} style={`--i: ${i}`} data-navlink>
+            <span>{item.label}</span>
+            <span class="drawer-arrow" aria-hidden="true"><Icon name="arrow" size={18} /></span>
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="drawer-foot">
+      <p class="meta status"><span class="dot"></span>{SITE.status}</p>
+      <div class="drawer-actions">
+        <Button href={SITE.cvUrl} icon="download">Baixar CV</Button>
+        <Button href={SITE.linkedin} variant="ghost" icon="external" external>Ver LinkedIn</Button>
+      </div>
+      <div class="drawer-social">
+        <a class="flink" href={SITE.github} target="_blank" rel="noopener">GitHub</a>
+        <a class="flink" href={SITE.empresa} target="_blank" rel="noopener">Site Sob Medida</a>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  // Menu lateral (celular). <dialog> com showModal() já prende o foco, fecha com Esc
+  // e devolve o foco ao botão que abriu.
+  const menu = document.querySelector<HTMLDialogElement>('[data-menu]');
+  const opener = document.querySelector<HTMLButtonElement>('[data-menu-open]');
+
+  if (menu && opener) {
+    opener.addEventListener('click', () => {
+      menu.showModal();
+      opener.setAttribute('aria-expanded', 'true');
+    });
+    menu.addEventListener('close', () => opener.setAttribute('aria-expanded', 'false'));
+    menu.querySelector('[data-menu-close]')?.addEventListener('click', () => menu.close());
+    // clique no fundo escurecido (fora do painel) fecha
+    menu.addEventListener('click', (e) => {
+      if (e.target === menu) menu.close();
+    });
+    // links de seção: fecha o menu e deixa a âncora rolar a página
+    for (const a of menu.querySelectorAll<HTMLAnchorElement>('a[href^="#"]')) {
+      a.addEventListener('click', () => menu.close());
+    }
+    // se a tela crescer para desktop com o menu aberto, fecha
+    matchMedia('(min-width: 901px)').addEventListener('change', (e) => {
+      if (e.matches && menu.open) menu.close();
+    });
+  }
+
+  // Destaca no menu a seção que está na tela.
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-navlink]')];
+  const sections = [...new Set(links.map((a) => a.hash))]
+    .map((hash) => document.querySelector<HTMLElement>(hash))
+    .filter((el): el is HTMLElement => el !== null);
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const hash = `#${entry.target.id}`;
+        for (const a of links) {
+          if (a.hash === hash) a.setAttribute('aria-current', 'true');
+          else a.removeAttribute('aria-current');
+        }
+      }
+    },
+    { rootMargin: '-45% 0px -50% 0px' },
+  );
+  for (const s of sections) io.observe(s);
+</script>

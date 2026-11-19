@@ -7,12 +7,13 @@ interface Props {
   icon?: IconName;
   size?: 'sm';
   external?: boolean;
+  class?: string;
 }
 
-const { href, variant = 'lime', icon, size, external = false } = Astro.props;
+const { href, variant = 'lime', icon, size, external = false, class: extra } = Astro.props;
 const target = external ? { target: '_blank', rel: 'noopener' } : {};
 ---
 
-<a class:list={['btn', `btn-${variant}`, size === 'sm' && 'btn-sm']} href={href} {...target}>
+<a class:list={['btn', `btn-${variant}`, size === 'sm' && 'btn-sm', extra]} href={href} {...target}>
   <slot />{icon && <span class="ic"><Icon name={icon} /></span>}
 </a>

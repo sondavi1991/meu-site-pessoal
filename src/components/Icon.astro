@@ -5,6 +5,9 @@ const ICONS = {
   arrow: { vb: 16, d: 'M3 8h10M9 4l4 4-4 4' },
   check: { vb: 16, d: 'M3 8.5l3 3 7-7' },
   plus: { vb: 14, d: 'M7 1v12M1 7h12' },
+  close: { vb: 16, d: 'M3.5 3.5l9 9M12.5 3.5l-9 9' },
+  pause: { vb: 16, d: 'M5.5 3.5v9M10.5 3.5v9' },
+  play: { vb: 16, d: 'M5 3.5l7 4.5-7 4.5z' },
 } as const;
 
 export type IconName = keyof typeof ICONS;

@@ -1,10 +1,11 @@
 ---
+import Icon from './Icon.astro';
 import { LIVE_SITES } from '../data/site';
 ---
 
-<section class="strip">
+<section class="strip" aria-label="Sites no ar">
   <span class="meta strip-label">Mais de 30 sites no ar</span>
-  <div class="mq">
+  <div class="mq" data-marquee>
     <div class="mq-track">
       {LIVE_SITES.map((s) => <a class="mq-item" href={s.url} target="_blank" rel="noopener">{s.name}</a>)}
       {/* cópia para o loop contínuo: escondida de leitores de tela e do Tab */}
@@ -13,4 +14,22 @@ import { LIVE_SITES } from '../data/site';
       ))}
     </div>
   </div>
+  <button class="mq-toggle" type="button" aria-pressed="false" data-marquee-toggle>
+    <span class="mq-ic-pause"><Icon name="pause" /></span>
+    <span class="mq-ic-play"><Icon name="play" /></span>
+    <span class="sr-only">Pausar a faixa de sites</span>
+  </button>
 </section>
+
+<script>
+  // Controle de pausa da faixa (WCAG 2.2.2): funciona com toque, mouse e teclado.
+  for (const btn of document.querySelectorAll<HTMLButtonElement>('[data-marquee-toggle]')) {
+    const mq = btn.parentElement?.querySelector<HTMLElement>('[data-marquee]');
+    if (!mq) continue;
+    btn.addEventListener('click', () => {
+      const paused = btn.getAttribute('aria-pressed') !== 'true';
+      btn.setAttribute('aria-pressed', String(paused));
+      mq.classList.toggle('is-paused', paused);
+    });
+  }
+</script>

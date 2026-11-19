@@ -11,7 +11,8 @@ const range = (i: number) => {
 
 <section id="sobre" class="sec sec-tight">
   <div class="wrap">
-    <h2 class="disp rv about-title">{words.map((w, i) => <span style={range(i)}>{w} </span>)}</h2>
+    <h2 class="sr-only">Sobre</h2>
+    <p class="disp rv about-title">{words.map((w, i) => <span style={range(i)}>{w} </span>)}</p>
     <div class="now">
       {NOW.map((n) => (
         <div>
