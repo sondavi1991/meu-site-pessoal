@@ -33,7 +33,10 @@ const ogImage = new URL(SITE.ogImage, site).href;
     {!noindex && <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />}
     <meta name="theme-color" content="#0b0c0e" />
     <meta name="color-scheme" content="dark" />
+    <!-- .ico para navegadores antigos, SVG para os atuais, PNG de 96px para resultados de busca -->
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
     <!-- perfis oficiais: ajudam buscadores a ligar o site às redes do Davi -->
