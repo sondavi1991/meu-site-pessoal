@@ -96,7 +96,7 @@ flowchart LR
     img["src/assets/<br/>fotos e prints"] --> build
     fonts["Fonts API<br/>Google → WOFF2 local"] --> build
     build --> dist["dist/<br/>HTML + CSS + WebP + WOFF2"]
-    dist --> host["qualquer hospedagem estática"]
+    dist --> host["nginx na Coolify"]
 
     classDef lime fill:#c6ff3d,color:#0b0c0e,stroke:#c6ff3d
 ```
@@ -143,6 +143,8 @@ npm run dev        # http://localhost:4321
 ├── .github/assets/           # imagens deste README
 ├── public/
 │   ├── favicon.svg
+│   ├── apple-touch-icon.png  # ícone na tela inicial do iPhone
+│   ├── og.jpg                # imagem de compartilhamento (1200×630)
 │   └── images/hero-mask.png  # máscara do efeito de código no hero
 ├── src/
 │   ├── assets/               # fotos e prints, otimizados no build
@@ -151,17 +153,23 @@ npm run dev        # http://localhost:4321
 │   ├── layouts/Layout.astro  # <head>, metatags e fontes
 │   ├── pages/index.astro     # monta as seções
 │   ├── pages/404.astro       # página de “commit não encontrado”
+│   ├── pages/robots.txt.ts   # robots.txt gerado no build
+│   ├── pages/sitemap.xml.ts  # sitemap gerado no build
 │   └── styles/global.css     # tokens e estilos, por seção
-└── astro.config.mjs          # domínio e fontes
+├── astro.config.mjs          # domínio e fontes
+├── Dockerfile                # imagem de produção (build + nginx)
+└── nginx.conf                # cache, compressão, 404 e cabeçalhos de segurança
 ```
 
 ## Editando o conteúdo
 
 Quase tudo que aparece na página está em [`src/data/site.ts`](src/data/site.ts):
 
-- `SITE`: nome, status, links e o endereço do currículo (`cvUrl`).
+- `SITE`: nome, status, links, o endereço do currículo (`cvUrl`) e os textos de busca (`title` e
+  `description`), que também alimentam as metatags de compartilhamento e os dados estruturados.
 - `PROJECTS`: os cards de projetos. Para trocar um print, coloque a imagem em
-  `src/assets/projetos/` e importe no topo do arquivo. Sem `url`, o card fica sem o botão
+  `src/assets/projetos/`, importe no topo do arquivo e atualize o `imageAlt` (o texto que
+  descreve o print para leitores de tela e para o Google). Sem `url`, o card fica sem o botão
   “Abrir site” (projeto que ainda não está no ar).
 - `LIVE_SITES`, `STACK`, `SERVICES`, `CAREER`, `HOUSE_RULES` e `FAQ`: as demais seções.
 
@@ -172,9 +180,27 @@ Cores e espaçamentos ficam nas custom properties do bloco `.dm` em
 
 ## Deploy
 
-O build gera arquivos estáticos em `dist/`, prontos para Vercel, Netlify, Cloudflare Pages ou
-GitHub Pages. Antes de publicar, ajuste `site` em [`astro.config.mjs`](astro.config.mjs) para o
-domínio final.
+O site roda na [Coolify](https://coolify.io) a partir do [`Dockerfile`](Dockerfile): o Node gera o
+`dist/` e uma imagem `nginx` serve os arquivos, com a configuração em [`nginx.conf`](nginx.conf).
+
+Para criar a aplicação na Coolify:
+
+1. **New Resource → Public/Private Repository** apontando para este repositório, branch `main`.
+2. **Build Pack:** `Dockerfile`. **Ports Exposes:** `80`.
+3. **Domains:** `https://davimanoel.com.br,https://www.davimanoel.com.br`, e em **Direction**
+   escolha *Redirect to non-www*. O HTTPS (Let's Encrypt) fica com o proxy da Coolify.
+4. Ative o deploy automático a cada push na `main`.
+
+O `site` em [`astro.config.mjs`](astro.config.mjs) precisa ser o domínio final: ele entra no
+canonical, no `sitemap.xml`, no `robots.txt` e nas metatags. Se o domínio mudar, refaça também o
+`public/og.jpg`, que tem o endereço escrito na imagem.
+
+Para testar a imagem de produção na sua máquina:
+
+```bash
+docker build -t davimanoel-site .
+docker run --rm -p 8080:80 davimanoel-site   # http://localhost:8080
+```
 
 ## Direitos
 

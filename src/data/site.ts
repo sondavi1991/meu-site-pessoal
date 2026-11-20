@@ -68,6 +68,8 @@ export interface Project {
   /** Sem url, o projeto ainda não está no ar: o card fica sem o botão "Abrir site". */
   url?: string;
   image: ImageMetadata;
+  /** Texto alternativo do print: descreve o que aparece na tela, não só o nome do projeto. */
+  imageAlt: string;
 }
 
 export const PROJECTS: Project[] = [
@@ -80,6 +82,8 @@ export const PROJECTS: Project[] = [
     tags: ['WordPress', 'Tema próprio', 'Filtros avançados', 'Painel próprio'],
     url: 'https://unicainstrumentacao.com.br/',
     image: unica,
+    imageAlt:
+      'Página inicial da Única Instrumentação: título “Soluções inteligentes em medição e testes para a indústria” em amarelo e branco sobre foto escura de uma refinaria, ao lado de uma câmera acústica industrial.',
   },
   {
     name: 'Sonho & Magia Viagens',
@@ -90,6 +94,8 @@ export const PROJECTS: Project[] = [
     tags: ['WordPress', 'Elementor', 'GA4'],
     url: 'https://www.smviagens.com.br/',
     image: sonhoEMagia,
+    imageAlt:
+      'Página inicial da Sonho & Magia Viagens: título “Viagens com pets ou viagens de lazer” sobre foto de um cachorro com mochila de viagem, ao lado de um formulário de contato.',
   },
   {
     name: 'Elementary',
@@ -99,6 +105,8 @@ export const PROJECTS: Project[] = [
       'Sistema de gestão para clínicas veterinárias do Elementary Instituto Laboratorial: equipe, pacientes e rotina num lugar só. Lançamento em breve.',
     tags: ['Node.js', 'Fastify', 'React', 'PostgreSQL'],
     image: elementary,
+    imageAlt:
+      'Tela de login do sistema Elementary de gestão veterinária: à esquerda, a frase “Mais tempo para quem precisa de cuidado” e a foto de uma veterinária com um golden retriever; à direita, os campos de e-mail e senha.',
   },
   {
     name: 'Sekiama',
@@ -109,6 +117,8 @@ export const PROJECTS: Project[] = [
     tags: ['WordPress', 'Tema próprio', 'WooCommerce', 'ERP'],
     url: 'https://www.sekiama.com.br/',
     image: sekiama,
+    imageAlt:
+      'Página inicial da loja Sekiama: busca “Buscar a farofa feita para mim”, menu verde e banner “10 anos de história, da Amazônia para a sua mesa” com a foto de uma mão segurando mandioca.',
   },
   {
     name: 'JR Pedras',
@@ -119,6 +129,8 @@ export const PROJECTS: Project[] = [
     tags: ['Astro', 'Laravel', 'Infra'],
     url: 'https://www.jrpedras.com.br/',
     image: jrPedras,
+    imageAlt:
+      'Página inicial da JR Pedras: banner “Mosaico Português” com uma parede de pedras brancas e plantas, botão “Peça um orçamento” e a faixa de diferenciais da empresa.',
   },
 ];
 

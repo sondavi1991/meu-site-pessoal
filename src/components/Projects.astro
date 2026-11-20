@@ -35,7 +35,7 @@ const host = (url: string) => new URL(url).hostname.replace(/^www\./, '');
                 <span class="browser-dots"><i></i><i></i><i></i></span>
                 <span class="browser-url">{p.url ? host(p.url) : 'em breve no ar'}</span>
               </div>
-              <Image src={p.image} alt={`Página inicial do projeto ${p.name}`} widths={[600, 900, 1200, 1600]} sizes="(max-width: 900px) 100vw, 55vw" />
+              <Image src={p.image} alt={p.imageAlt} widths={[600, 900, 1200, 1600]} sizes="(max-width: 900px) 100vw, (max-width: 1320px) 52vw, 690px" />
             </div>
           </div>
         </article>
