@@ -13,7 +13,7 @@ feito para carregar rápido até no 4G.
 [![Primeira carga](https://img.shields.io/badge/primeira_carga-278_kB-c6ff3d?style=flat-square&labelColor=0b0c0e)](#em-números)
 [![Node](https://img.shields.io/badge/node-%E2%89%A522.23-0b0c0e?style=flat-square&logo=nodedotjs&logoColor=c6ff3d)](.nvmrc)
 
-[LinkedIn](https://www.linkedin.com/in/davi-manoel/) · [Site Sob Medida](https://www.sitesobmedida.com.br/) · [GitHub](https://github.com/sondavi1991)
+**[davimanoel.com.br](https://www.davimanoel.com.br/)** · [LinkedIn](https://www.linkedin.com/in/davi-manoel/) · [Site Sob Medida](https://www.sitesobmedida.com.br/) · [GitHub](https://github.com/sondavi1991)
 
 </div>
 
@@ -97,9 +97,22 @@ flowchart LR
     fonts["Fonts API<br/>Google → WOFF2 local"] --> build
     build --> dist["dist/<br/>HTML + CSS + WebP + WOFF2"]
     dist --> host["nginx na Coolify"]
+    host --> cdn["Cloudflare"]
 
     classDef lime fill:#c6ff3d,color:#0b0c0e,stroke:#c6ff3d
 ```
+
+## Busca e compartilhamento
+
+- **Metatags completas:** título e descrição dentro do limite do Google, canonical, Open Graph e
+  cartão do X com imagem 1200×630, favicons para navegador, busca e tela inicial do iPhone.
+- **Dados estruturados** em JSON-LD (`WebSite`, `ProfilePage` e `Person`), montados a partir do
+  mesmo arquivo de conteúdo: serviços, projetos, stack e perfis entram sozinhos.
+- **Arquivos para robôs gerados no build:** `sitemap.xml`, `robots.txt` e `llms.txt`, um resumo
+  da página em Markdown para leitores automáticos.
+- **Um endereço por página:** o domínio sem `www`, o `http` e o `/index.html` redirecionam com 301
+  para `https://www.davimanoel.com.br/`. Endereço que não existe responde 404 de verdade, com
+  `noindex`.
 
 ## Acessibilidade
 
@@ -142,7 +155,9 @@ npm run dev        # http://localhost:4321
 ```text
 ├── .github/assets/           # imagens deste README
 ├── public/
-│   ├── favicon.svg
+│   ├── favicon.svg           # favicon dos navegadores atuais
+│   ├── favicon.ico           # navegadores antigos
+│   ├── favicon-96x96.png     # ícone nos resultados de busca
 │   ├── apple-touch-icon.png  # ícone na tela inicial do iPhone
 │   ├── og.jpg                # imagem de compartilhamento (1200×630)
 │   └── images/hero-mask.png  # máscara do efeito de código no hero
@@ -155,6 +170,7 @@ npm run dev        # http://localhost:4321
 │   ├── pages/404.astro       # página de “commit não encontrado”
 │   ├── pages/robots.txt.ts   # robots.txt gerado no build
 │   ├── pages/sitemap.xml.ts  # sitemap gerado no build
+│   ├── pages/llms.txt.ts     # resumo do site em Markdown, gerado do site.ts
 │   └── styles/global.css     # tokens e estilos, por seção
 ├── astro.config.mjs          # domínio e fontes
 ├── Dockerfile                # imagem de produção (build + nginx)
@@ -172,6 +188,9 @@ Quase tudo que aparece na página está em [`src/data/site.ts`](src/data/site.ts
   descreve o print para leitores de tela e para o Google). Sem `url`, o card fica sem o botão
   “Abrir site” (projeto que ainda não está no ar).
 - `LIVE_SITES`, `STACK`, `SERVICES`, `CAREER`, `HOUSE_RULES` e `FAQ`: as demais seções.
+
+Os dados estruturados e o `llms.txt` saem desse mesmo arquivo: mudou o conteúdo, eles acompanham
+no próximo build.
 
 Cores e espaçamentos ficam nas custom properties do bloco `.dm` em
 [`src/styles/global.css`](src/styles/global.css). Para trocar uma fonte, mude o `name` dela em
@@ -192,6 +211,10 @@ Para criar a aplicação na Coolify:
    **Direction** pode ficar em *Allow www & non-www*. O HTTPS (Let's Encrypt) fica com o proxy
    da Coolify.
 4. Ative o deploy automático a cada push na `main`.
+
+Na frente da Coolify fica o Cloudflare. Ele acrescenta regras próprias no começo do `robots.txt`
+e pode barrar robôs de IA pelo user agent; a política de robôs que vale em produção é a que
+estiver configurada lá.
 
 O `site` em [`astro.config.mjs`](astro.config.mjs) precisa ser o domínio final: ele entra no
 canonical, no `sitemap.xml`, no `robots.txt` e nas metatags. Se o domínio mudar, refaça também o

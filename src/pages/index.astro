@@ -60,8 +60,9 @@ const jsonLd = {
         addressRegion: SITE.region,
         addressCountry: 'BR',
       },
+      // a empresa é outra entidade: entra como worksFor, não em sameAs (que é só para perfis do Davi)
       worksFor: { '@type': 'Organization', name: SITE.empresaNome, url: SITE.empresa },
-      sameAs: [SITE.linkedin, SITE.github, SITE.empresa],
+      sameAs: [SITE.linkedin, SITE.github],
       knowsLanguage: 'pt-BR',
       knowsAbout: [...new Set(STACK.flatMap((g) => g.keys.map((k) => k.name)))],
       makesOffer: SERVICES.map((s) => ({
