@@ -6,9 +6,12 @@ import { defineConfig, fontProviders } from 'astro/config';
 const google = fontProviders.google();
 
 export default defineConfig({
-  // TODO: trocar pelo domínio final (usado no canonical e no sitemap)
+  // Domínio final: usado no canonical, no sitemap, no robots.txt, nas metatags e nos dados estruturados.
+  // Se mudar, refaça também public/og.jpg (o domínio aparece escrito na imagem).
   site: 'https://davimanoel.com.br',
   compressHTML: true,
+  // Uma página só: o CSS vai embutido no HTML e não bloqueia a primeira pintura com outra requisição.
+  build: { inlineStylesheets: 'always' },
   fonts: [
     {
       name: 'Bricolage Grotesque',

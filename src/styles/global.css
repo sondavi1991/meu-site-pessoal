@@ -326,7 +326,7 @@ details.acc summary::-webkit-details-marker { display: none; }
 details.acc summary .pm { margin-left: auto; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; transition: transform 0.45s var(--ease), background 0.25s, color 0.25s; flex: none; }
 details.acc[open] summary .pm { transform: rotate(45deg); background: var(--lime); color: var(--on-lime); border-color: var(--lime); }
 details.acc summary:hover .ttl { color: var(--lime); }
-.ttl { transition: color 0.2s; }
+.ttl { margin: 0; font-size: inherit; transition: color 0.2s; }
 
 .svc-title { font-size: clamp(22px, 2.2vw, 30px); }
 .svc-body { display: flex; flex-wrap: wrap; gap: 48px; padding: 0 0 40px; }

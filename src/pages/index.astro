@@ -1,4 +1,5 @@
 ---
+import { getImage } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
@@ -13,9 +14,74 @@ import Reviews from '../components/Reviews.astro';
 import Faq from '../components/Faq.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
+import foto from '../assets/davi-manoel.webp';
+import { PROJECTS, SERVICES, SITE, STACK } from '../data/site';
+
+// Dados estruturados (schema.org): dizem ao Google quem é a pessoa por trás da página.
+const site = Astro.site ?? new URL(Astro.url.origin);
+const url = new URL('/', site).href;
+const photo = await getImage({ src: foto, width: 720, format: 'jpg' });
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${url}#site`,
+      url,
+      name: SITE.name,
+      inLanguage: 'pt-BR',
+      publisher: { '@id': `${url}#davi` },
+    },
+    {
+      '@type': 'ProfilePage',
+      '@id': `${url}#pagina`,
+      url,
+      name: SITE.title,
+      description: SITE.description,
+      inLanguage: 'pt-BR',
+      isPartOf: { '@id': `${url}#site` },
+      mainEntity: { '@id': `${url}#davi` },
+      dateModified: new Date().toISOString(),
+    },
+    {
+      '@type': 'Person',
+      '@id': `${url}#davi`,
+      name: SITE.name,
+      givenName: 'Davi',
+      familyName: 'Manoel',
+      url,
+      image: new URL(photo.src, site).href,
+      jobTitle: SITE.jobTitle,
+      description: SITE.description,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: SITE.locality,
+        addressRegion: SITE.region,
+        addressCountry: 'BR',
+      },
+      worksFor: { '@type': 'Organization', name: SITE.empresaNome, url: SITE.empresa },
+      sameAs: [SITE.linkedin, SITE.github, SITE.empresa],
+      knowsLanguage: 'pt-BR',
+      knowsAbout: [...new Set(STACK.flatMap((g) => g.keys.map((k) => k.name)))],
+      makesOffer: SERVICES.map((s) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: s.title, description: s.text },
+      })),
+      workExample: PROJECTS.map((p) => ({
+        '@type': 'CreativeWork',
+        name: p.name,
+        description: p.description,
+        dateCreated: p.year,
+        keywords: p.tags.join(', '),
+        ...(p.url ? { url: p.url } : {}),
+      })),
+    },
+  ],
+};
 ---
 
-<Layout>
+<Layout jsonLd={jsonLd}>
   <Nav />
   <main id="conteudo" tabindex="-1">
     <Hero />

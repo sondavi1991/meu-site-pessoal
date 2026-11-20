@@ -11,16 +11,24 @@ import unica from '../assets/projetos/unica.webp';
 
 export const SITE = {
   name: 'Davi Manoel',
-  title: 'Davi Manoel — Engenheiro de Software',
+  // até ~60 caracteres no título e ~155 na descrição, para o Google não cortar
+  title: 'Davi Manoel — Engenheiro de Software Full Stack',
   description:
-    'Engenheiro de software full stack com mais de 10 anos criando sites, landing pages e sistemas sob medida com Laravel, Node.js e WordPress.',
+    'Desenvolvedor full stack há 10+ anos: sites, landing pages e sistemas sob medida com Laravel, Node.js e WordPress para empresas do Brasil e do exterior.',
+  jobTitle: 'Engenheiro de Software Full Stack',
   status: 'Online · aberto a projetos, parcerias e boas conversas',
   city: 'Ribeirão Preto, SP',
+  locality: 'Ribeirão Preto',
+  region: 'SP',
+  // imagem de compartilhamento (1200×630) em public/
+  ogImage: '/og.jpg',
+  ogImageAlt: 'Davi Manoel, engenheiro de software full stack. 10+ anos com Laravel, Node.js e WordPress.',
   // download direto do PDF no Drive (abre na mesma aba: o navegador só baixa o arquivo)
   cvUrl: 'https://drive.google.com/uc?export=download&id=1rrYTUbeHgH0g76BYuYi2Xcmck7lcR9zo',
   linkedin: 'https://www.linkedin.com/in/davi-manoel/',
   github: 'https://github.com/sondavi1991',
   empresa: 'https://www.sitesobmedida.com.br/',
+  empresaNome: 'Site Sob Medida',
 };
 
 export const NAV = [

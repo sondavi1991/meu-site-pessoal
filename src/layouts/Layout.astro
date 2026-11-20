@@ -8,10 +8,14 @@ interface Props {
   description?: string;
   /** Páginas que não devem aparecer no Google (ex.: 404) */
   noindex?: boolean;
+  /** Dados estruturados (schema.org) da página, em JSON-LD */
+  jsonLd?: Record<string, unknown>;
 }
 
-const { title = SITE.title, description = SITE.description, noindex = false } = Astro.props;
-const canonical = Astro.site && !noindex ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const { title = SITE.title, description = SITE.description, noindex = false, jsonLd } = Astro.props;
+const site = Astro.site ?? new URL(Astro.url.origin);
+const canonical = noindex ? undefined : new URL(Astro.url.pathname, site).href;
+const ogImage = new URL(SITE.ogImage, site).href;
 ---
 
 <!doctype html>
@@ -23,15 +27,41 @@ const canonical = Astro.site && !noindex ? new URL(Astro.url.pathname, Astro.sit
     <script is:inline>document.documentElement.classList.add('js');</script>
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="author" content={SITE.name} />
     {canonical && <link rel="canonical" href={canonical} />}
     {noindex && <meta name="robots" content="noindex" />}
+    {!noindex && <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />}
     <meta name="theme-color" content="#0b0c0e" />
     <meta name="color-scheme" content="dark" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta property="og:type" content="website" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <!-- perfis oficiais: ajudam buscadores a ligar o site às redes do Davi -->
+    <link rel="me" href={SITE.linkedin} />
+    <link rel="me" href={SITE.github} />
+
+    <!-- Compartilhamento (WhatsApp, LinkedIn, Facebook, X) -->
+    <meta property="og:type" content={noindex ? 'website' : 'profile'} />
     <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={SITE.ogImageAlt} />
+    {!noindex && <meta property="profile:first_name" content="Davi" />}
+    {!noindex && <meta property="profile:last_name" content="Manoel" />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={SITE.ogImageAlt} />
+
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')} />}
+
     <!-- Fontes servidas pelo próprio site; só títulos e texto entram em preload (acima da dobra) -->
     <Font cssVariable="--font-display" preload />
     <Font cssVariable="--font-body" preload />

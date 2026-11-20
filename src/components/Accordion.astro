@@ -12,7 +12,7 @@ const { title, titleClass, open = false } = Astro.props;
 
 <details class="acc" open={open}>
   <summary>
-    <span class:list={['ttl', titleClass]}>{title}</span>
+    <h3 class:list={['ttl', titleClass]}>{title}</h3>
     <span class="pm" aria-hidden="true"><Icon name="plus" size={14} /></span>
   </summary>
   <slot />
