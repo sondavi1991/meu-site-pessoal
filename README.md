@@ -187,8 +187,10 @@ Para criar a aplicação na Coolify:
 
 1. **New Resource → Public/Private Repository** apontando para este repositório, branch `main`.
 2. **Build Pack:** `Dockerfile`. **Ports Exposes:** `80`.
-3. **Domains:** `https://davimanoel.com.br,https://www.davimanoel.com.br`, e em **Direction**
-   escolha *Redirect to non-www*. O HTTPS (Let's Encrypt) fica com o proxy da Coolify.
+3. **Domains:** `https://davimanoel.com.br,https://www.davimanoel.com.br`. O endereço principal é
+   o `www`: o [`nginx.conf`](nginx.conf) redireciona o domínio sem `www` com um 301, então o
+   **Direction** pode ficar em *Allow www & non-www*. O HTTPS (Let's Encrypt) fica com o proxy
+   da Coolify.
 4. Ative o deploy automático a cada push na `main`.
 
 O `site` em [`astro.config.mjs`](astro.config.mjs) precisa ser o domínio final: ele entra no
